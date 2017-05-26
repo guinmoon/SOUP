@@ -99,11 +99,17 @@ function SearchPeoples(pers) {
             method: "GET",
             headers: {'user-agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:51.0) Gecko/20100101 Firefox/51.0',
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-            "Accept-Encoding": 'utf-8',"Cookie":"AUTHCODE=KYn4ksJlGxXIslo9BTiSywM463em1Xwntf9nWN023Vbn-ISAYwOMLpVyEcgleVhx1isl2H7w5k0k8J3dcPcMm2CnTfJNobG3VSbJ_0WHT38_2; JSESSIONID=aaeef9577cacbde4ebbca98f802743e995f44a513e5390cf;"}
-            }, function(error, response, body) {
+            "Accept-Encoding": 'utf-8',"Cookie":"AUTHCODE=KYn4ksJlGxXIslo9BTiSyxEd60X0ih2qNWSwDcF9z4J_91fOPFCrY-gM3GzueItymZtVKBpYbqVqQgMrlnvRzkc3sN7kmq2EpAfvBK73IA4_2; JSESSIONID=8c3da6f6f242e72b4c651e9a1d374c9ac6f695f98e89d33.56498573;"}
+        }, function(error, response, body) {
+                /*fs.writeFile("okSearch.html", body, function(err) {
+                        if(err) {
+                            return console.log(err);
+                        }
+                });*/
                 var $page = cheerio.load(body);
                 var Peoples = [];
-                $page('#gs_result_list div.show-on-hover').each(function(i, elm) {
+                $page("#gs_result_list div[class='ucard-v __h']").each(function(i, elm) {
+                   // console.log("iter");
                     var $hover = cheerio.load($page(this).html());
                     var img_src=$hover('img.photo_img').attr('src');
                     img_src = "https:"+img_src;

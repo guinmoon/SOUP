@@ -27,10 +27,10 @@ var model = {
     ],
     socNetworks: [
         {id:"vkCheckBox",class:"networkCheckBoxesChecked",img_src:"site/imgs/vk_ico.png"},
-        {id:"okCheckBox",class:"networkCheckBoxesUnchecked",img_src:"site/imgs/ok_ico.png"},
+        {id:"okCheckBox",class:"networkCheckBoxesChecked",img_src:"site/imgs/ok_ico.png"},
         {id:"fbCheckBox",class:"networkCheckBoxesChecked",img_src:"site/imgs/fb_ico.png"},
         {id:"twCheckBox",class:"networkCheckBoxesUnchecked",img_src:"site/imgs/tw_ico.png"},
-        {id:"inCheckBox",class:"networkCheckBoxesChecked",img_src:"site/imgs/in_ico.png"},
+        {id:"inCheckBox",class:"networkCheckBoxesUnchecked",img_src:"site/imgs/in_ico.png"},
         {id:"gpCheckBox",class:"networkCheckBoxesUnchecked",img_src:"site/imgs/gp_ico.png"},
         {id:"ljCheckBox",class:"networkCheckBoxesUnchecked",img_src:"site/imgs/lj_ico.png"},
         {id:"mmCheckBox",class:"networkCheckBoxesUnchecked",img_src:"site/imgs/mm_ico.png"},
