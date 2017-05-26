@@ -70,11 +70,11 @@ function SearchPeoples(pers,network) {
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
             "Accept-Encoding": 'utf-8',"Cookie":"AUTHCODE=KYn4ksJlGxXIslo9BTiSywM463em1Xwntf9nWN023Vbn-ISAYwOMLpVyEcgleVhx1isl2H7w5k0k8J3dcPcMm2CnTfJNobG3VSbJ_0WHT38_2; JSESSIONID=aaeef9577cacbde4ebbca98f802743e995f44a513e5390cf;"}
         }, function(error, response, body) {
-                fs.writeFile("ypSearch.html", body, function(err) {
+                /*fs.writeFile("ypSearch.html", body, function(err) {
                         if(err) {
                             return console.log(err);
                         }
-                }); 
+                }); */
                 var $page = cheerio.load(body);
                 var Peoples = [];
                 console.log("Before_iter");
