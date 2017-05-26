@@ -1,0 +1,237 @@
+
+html, body{
+    height:100%;
+    width: 100%;
+}
+/* The side navigation menu */
+.sidenav {
+    display:block;
+    height:100%; /* 100% Full-height */
+    width: 40px; /* 0 width - change this with JavaScript */
+    z-index: 1;/*  Stay on top */
+    top: 50px;
+    left: 0;
+    position: fixed;
+    /*background-color: #2b579a; /* Black*/
+    background-color: #eeeeee;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    /*padding-top: 60px; /* Place content 60px from the top */
+    padding-left: 40px;
+    padding-top: 5px;
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    float:left;
+    max-width:  25%;
+     
+}
+
+#rightSideBar{
+    display:block;
+    height:100%; /* 100% Full-height */
+    width: 55px; /* 0 width - change this with JavaScript */
+    z-index: 2  ;/*  Stay on top */
+    top: 50px;
+    position: fixed;
+    /*background-color: #2b579a; /* Black*/
+    background-color: #eeeeee;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    /*padding-top: 60px; /* Place content 60px from the top */
+    padding-left: 40px;
+    padding-top: 5px;
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    float:right;
+    max-width:  25%;  
+    right: 0;
+}
+
+
+
+div.networksCheckboxes
+{
+    
+    width: 400px;
+    margin: 0 auto; 
+    float: right;
+    vertical-align: middle;
+    padding-top: 5px;
+    
+}
+
+div.profileInfo{
+   
+    font-size: 22px;
+    font-weight: 600;
+    /*width: 200px;
+    margin: 0 auto; 
+    float: left;*/
+    float:right; 
+    vertical-align: middle;
+    padding-top: 8px;
+    padding-right: 20px;
+    color: chocolate;
+}
+
+img.soupIcon{
+    float: left;
+    padding-left: 20px;
+   /*float:right; */
+}
+
+div.ProgressBarInitialized{
+    top:50px;
+    position: fixed;
+    
+    border-top: 3px solid green; 
+    z-index: 100;
+}
+
+.socDiv{
+    height: 60px;
+    padding-top: 2px;
+    display: inline-block;
+  /*  border-top: 3px solid red;*/
+    padding-left: 6px;
+}
+
+.networkCheckBoxesChecked
+{
+    -webkit-filter: drop-shadow(5px 5px 5px #144a0b);
+    filter: drop-shadow(5px 5px 5px #144a0b);
+}
+
+.networkCheckBoxesUnchecked:hover
+{
+    -webkit-filter: drop-shadow(5px 5px 5px #888);
+    filter: drop-shadow(5px 5px 5px #888);
+}
+
+#workArea{
+    height:100%;
+    min-width: 75%;
+    width: 100%;
+    max-width:  75%;
+    display: block;
+    left:40px;
+    top:55px;
+    position: relative;
+    /*border:1px solid #b6a1a1;*/
+    float:left;
+    transition: 0.5s;
+    padding-left: 10px;
+    
+}
+    
+img.ava{
+    border-radius: 15px;
+    transition: 0.5s; 
+    box-shadow: 0 2px 4px 0 rgba(100, 100, 100, 0.5), 0 2px 10px 0;
+    width: 60px;
+    height: 60px;
+    
+}
+
+/* The navigation menu links */
+/*.sidenav a {
+    padding: 0px 4px 8px 6px;
+    text-decoration: none;
+    font-size: 25px;
+    display: block;
+    transition: 0.3s
+}
+*/
+
+
+td.glabel{
+   /*color: rgb(78%, 77%, 74.3%); */
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover, .offcanvas a:focus{
+    color: #343434;
+}
+
+/* Position and style the close button (top right corner) */
+.page-headerr .closebtn {
+    /*position: absolute;*/
+    top: 0;
+   /* right: 25px;*/
+    font-size: 30px;
+    /*margin-left: 50px;*/
+    
+}
+
+.closebtn {
+    
+    float:left;
+}
+
+
+
+.page-headerr{
+    position: fixed;
+  /*  background-color: #2b579a; */
+   background-color: #eeeeee;
+     width: 100%;
+     z-index: 10;
+     height: 50px;
+     padding-left: 10px;
+     box-shadow: 0 2px 4px 0 rgba(200, 200, 200, 0.1), 0 2px 10px 0
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+div.region{
+    font-size: 11px;
+}
+
+/* Dropdown Button */
+/*.dropbtn {
+    background-color: #4CAF50;
+    
+    color: white;
+    
+    width: 100px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+*/
+/* Dropdown button on hover & focus */
+/*.dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+}
+*/
+/* The container <div> - needed to position the dropdown content */
+/*.dropdown {
+    height: 50px;
+    padding-left: 50px;
+    position: relative;
+    display: inline-block;
+}*/
+
+/* Dropdown Content (Hidden by Default) */
+/*.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+*/
+/* Links inside the dropdown */
+/*.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+*/
+/* Change color of dropdown links on hover */
+/*.dropdown-content a:hover {background-color: #f1f1f1}*/
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+/*.show {display:block;}*/

@@ -1,0 +1,46 @@
+<!doctype html>
+<html ng-app="passportApp">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="site/css/passport.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+</head>
+<body ng-controller="passportController">
+
+        <div class="loginBlock">
+            <div class="loginForm">
+            <table class="login_table">
+                <thead>
+                    <th class="loginStatus">{{list.loginStatus}}
+                    </th>
+                </thead>
+                <tbody>
+                    <form name="searchForm">
+                    <fieldset>
+                    <tr>
+                        <td>Имя пользователя<br><input class="form-control" type="login" ng-model="list.login"/></td>
+                    </tr>
+                    <tr>
+                        <td>Пароль<br><input class="form-control" type="password" ng-model="list.password" ng-keypress="checkIfEnterKeyWasPressed($event)"/></td>
+                    </tr>
+                    </fieldset>
+                    </form>   
+                </tbody>
+            </table>
+            <div class="form-group">
+                    <div >
+                        <button class="btn btn-default"  ng-click="loginFunc(list)">Войти  </button>
+                    </div>
+            </div>
+            </div>
+        </div>
+        <img class="logo" src="site/imgs/logo.png" />
+
+   
+ 
+<script src="site/js/passportController.js"></script>
+</body>
+</html>

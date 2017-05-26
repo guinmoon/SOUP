@@ -1,0 +1,28 @@
+
+html, body{
+    height:100%;
+    width: 100%;
+}
+.loginBlock{
+    margin-top: 17%;
+    margin-left: 41%;    
+    position: fixed;
+}
+.loginForm{
+    padding: 45px;
+    padding-bottom: 70px;
+    background: aliceblue;
+}
+.form-group{
+    margin-top: 10px;
+    float: left;
+}
+.logo{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    opacity: 0.12;
+}
+.loginStatus{
+    color: red;
+}
