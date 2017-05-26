@@ -44,7 +44,7 @@ var fs = require('fs');
 
 
 
-function SearchPeoples(pers) {
+function SearchPeoples(pers,soc,countryFromPost,cityFromPost) {
     return new Promise(function (resolve, reject) {
         ageFrom="";
         ageTo="";
@@ -52,6 +52,8 @@ function SearchPeoples(pers) {
         lastname="";
         middlename="";
         inputPhone="";
+        //Country=countryFromPost.title;
+        City=cityFromPost.title;
         for(i=0;i<pers.length;i++)
         {
             if(pers[i].type=="bday")
@@ -91,8 +93,11 @@ function SearchPeoples(pers) {
         }
         var search_name = firstname+" "+middlename+" "+lastname;
         search_name=encodeURIComponent(search_name);
+        var citySerchStr="";
+        if(City!=""&&City!=undefined)
+            citySerchStr = "&st.location="+encodeURIComponent(City)+"&st.city="+encodeURIComponent(City);
         var searchQuery = "https://ok.ru/search?st.query="+search_name+"&st.fromAge="
-        +ageFrom+"&st.tillAge="+ageTo+"&st.mode=Users&st.grmode=Groups&st.posted=set";
+        +ageFrom+"&st.tillAge="+ageTo+"&st.mode=Users&st.grmode=Groups&st.posted=set"+citySerchStr;
         request({
             //uri: "http://vk.com",
             uri: searchQuery,
@@ -125,6 +130,8 @@ function SearchPeoples(pers) {
                     if(firstname!="")
                         matchesCount++;
                     if(lastname!="")
+                        matchesCount++;
+                    if(City!=""&&City!=undefined)
                         matchesCount++;
                         
                     var ProfileDescription=[];

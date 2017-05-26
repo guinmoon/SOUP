@@ -28,8 +28,8 @@ function SearchPeoples(pers,soc,countryFromPost,cityFromPost) {
         inputPhone="";
         Country=countryFromPost.id;
         City=cityFromPost.id;
-        console.log(Country);
-        console.log(City);
+        //console.log(Country);
+       // console.log(City);
         for(i=0;i<pers.length;i++)
         {
             if(pers[i].type=="bday")

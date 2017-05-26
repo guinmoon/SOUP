@@ -77,7 +77,7 @@ function SearchPeoples(pers,network) {
                 }); */
                 var $page = cheerio.load(body);
                 var Peoples = [];
-                console.log("Before_iter");
+                //console.log("Before_iter");
                 $page("div.main__content li[class='serp-item people people_has-avatar_yes clearfix z-people']").each(function(i, elm) {
                     try{
                         var $hover = cheerio.load($page(this).html());
@@ -85,7 +85,8 @@ function SearchPeoples(pers,network) {
                         img_src = img_src.replace("background-image:url(","http:");
                         img_src = img_src.replace(")","");
                         var href=$hover("a[class='link people__avatar-link i-bem']").attr('href');
-                        var name=$hover("a[class='link people__avatar-link i-bem']").text();
+                        var name=$hover("a[class='link serp-item__title-link i-bem']").text();
+                        console.log(name);
                         var ProfileDescription=[];
                             ProfileDescription.push(name);
                         var descr=$hover("div[class='people__birth']").text();
