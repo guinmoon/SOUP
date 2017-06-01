@@ -127,7 +127,7 @@ function getCities(response,postData) {
   var Cities="empty";
   
   var serialisedData=JSON.parse(postData);
-  //console.log(serialisedData);
+ // console.log(serialisedData);
    vk.GetVkCities(serialisedData[0],serialisedData[1].id).then(function (value3) {
     Cities=value3;
     response.writeHead(200, {"Content-Type": "text/plain"});

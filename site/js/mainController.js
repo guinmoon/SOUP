@@ -88,6 +88,7 @@ function sleep(ms) {
                 try{ title=result.response.items[i].title; }catch(err){}
                 model.Countries.push({"id":countryId,"title":title});
         }
+        $scope.list.cur_country = {id:"1",title:"Россия"};
         //console.log(result);
         //console.log(model.Countries);              
     });
@@ -174,6 +175,7 @@ function sleep(ms) {
                     try{ area=result.response.items[i].area; }catch(err){}
                     model.Cities.push({"id":cityId,"title":title,"region":region,"area":area});
             }
+            
            // console.log(result);
             //console.log(model.Countries);              
         });
