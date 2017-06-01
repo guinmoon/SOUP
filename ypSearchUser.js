@@ -18,9 +18,9 @@ function SearchPeoples(pers,network) {
     return new Promise(function (resolve, reject) {
         ageFrom="";
         ageTo="";
-        firstname="";
-        lastname="";
-        middlename="";
+        fio="";
+       // lastname="";
+       // middlename="";
         inputPhone="";
         for(i=0;i<pers.length;i++)
         {
@@ -38,18 +38,18 @@ function SearchPeoples(pers,network) {
                     }
                 }
             }
-            if(pers[i].type=="firstname")
+            if(pers[i].type=="fio")
             {
-                firstname=pers[i].value;
+                fio=pers[i].value;
             }
-            if(pers[i].type=="lastname")
+            /*if(pers[i].type=="lastname")
             {
                 lastname=pers[i].value;
             }
             if(pers[i].type=="middlename")
             {
                 middlename=pers[i].value;
-            }
+            }*/
             if(pers[i].type=="phone")
             {
                 if(pers[i].value!=""){
@@ -59,7 +59,7 @@ function SearchPeoples(pers,network) {
                 }
             }
         }
-        var search_name = firstname+" "+lastname;
+        var search_name = /*firstname+" "+lastname*/fio;
         search_name=encodeURIComponent(search_name);
         var searchQuery = "https://yandex.ru/people?text="+search_name+"&lr=36&ps_network="+network;
         request({
@@ -98,10 +98,10 @@ function SearchPeoples(pers,network) {
                         var matchesCount=0;
                         //if(ageFrom!="")
                         //    matchesCount++;
-                        if(firstname!="")
+                        if(fio!="")
                             matchesCount++;
-                        if(lastname!="")
-                            matchesCount++;
+                       /* if(lastname!="")
+                            matchesCount++;*/
 
                         var social="YandexPeople";
                         if(href.indexOf("facebook")!=-1)

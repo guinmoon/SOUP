@@ -22,9 +22,9 @@ function SearchPeoples(pers,soc,countryFromPost,cityFromPost) {
         
         ageFrom="";
         ageTo="";
-        firstname="";
-        lastname="";
-        middlename="";
+        fio="";
+        //lastname="";
+        //middlename="";
         inputPhone="";
         Country=countryFromPost.id;
         City=cityFromPost.id;
@@ -46,14 +46,14 @@ function SearchPeoples(pers,soc,countryFromPost,cityFromPost) {
                     }
                 }
             }
-            if(pers[i].type=="firstname")
+            if(pers[i].type=="fio")
             {
-                firstname=pers[i].value;
+                fio=pers[i].value;
             }
-            if(pers[i].type=="lastname")
+          /*  if(pers[i].type=="lastname")
             {
                 lastname=pers[i].value;
-            }
+            }*/
             
             if(pers[i].type=="phone")
             {
@@ -64,7 +64,7 @@ function SearchPeoples(pers,soc,countryFromPost,cityFromPost) {
                 }
             }
         }
-        SearchQuery = firstname+" "+middlename+" "+lastname;
+        SearchQuery = /*firstname+" "+middlename+" "+lastname*/fio;
         //console.log(SearchQuery);
             //For new authorisation
            // ({
@@ -88,10 +88,10 @@ function SearchPeoples(pers,soc,countryFromPost,cityFromPost) {
                     var matchesCount=0;
                     if(ageFrom!="")
                         matchesCount++;
-                    if(firstname!="")
+                    if(fio!="")
                         matchesCount++;
-                    if(lastname!="")
-                        matchesCount++;
+                   /* if(lastname!="")
+                        matchesCount++;*/
                     if(City!=""&&City!=undefined)
                         matchesCount++;
                     if(Country!=""&&Country!=undefined)

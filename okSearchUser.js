@@ -48,9 +48,9 @@ function SearchPeoples(pers,soc,countryFromPost,cityFromPost) {
     return new Promise(function (resolve, reject) {
         ageFrom="";
         ageTo="";
-        firstname="";
-        lastname="";
-        middlename="";
+        fio="";
+       // lastname="";
+       // middlename="";
         inputPhone="";
         //Country=countryFromPost.title;
         City=cityFromPost.title;
@@ -70,18 +70,18 @@ function SearchPeoples(pers,soc,countryFromPost,cityFromPost) {
                     }
                 }
             }
-            if(pers[i].type=="firstname")
+            if(pers[i].type=="fio")
             {
-                firstname=pers[i].value;
+                fio=pers[i].value;
             }
-            if(pers[i].type=="lastname")
+           /* if(pers[i].type=="lastname")
             {
                 lastname=pers[i].value;
             }
             if(pers[i].type=="middlename")
             {
                 middlename=pers[i].value;
-            }
+            }*/
             if(pers[i].type=="phone")
             {
                 if(pers[i].value!=""){
@@ -91,7 +91,7 @@ function SearchPeoples(pers,soc,countryFromPost,cityFromPost) {
                 }
             }
         }
-        var search_name = firstname+" "+middlename+" "+lastname;
+        var search_name =/* firstname+" "+middlename+" "+lastname*/fio;
         search_name=encodeURIComponent(search_name);
         var citySerchStr="";
         if(City!=""&&City!=undefined)
@@ -127,10 +127,10 @@ function SearchPeoples(pers,soc,countryFromPost,cityFromPost) {
                     var matchesCount=0;
                     if(ageFrom!="")
                         matchesCount++;
-                    if(firstname!="")
+                    if(fio!="")
                         matchesCount++;
-                    if(lastname!="")
-                        matchesCount++;
+                    /*if(lastname!="")
+                        matchesCount++;*/
                     if(City!=""&&City!=undefined)
                         matchesCount++;
                         
