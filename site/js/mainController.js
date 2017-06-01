@@ -157,7 +157,8 @@ function sleep(ms) {
     }
 
     $scope.cityTyping = function(typed) {
-        $http.post("getCities", typed).success(function (answ) {
+        postData = [typed,$scope.list.cur_country];
+        $http.post("getCities", postData).success(function (answ) {
             $scope.response=answ;
             result = angular.fromJson(answ);
             model.Cities=[];

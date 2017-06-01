@@ -139,10 +139,10 @@ function SearchPeoples(pers,soc,countryFromPost,cityFromPost) {
     });
 }
 
-function GetVkCities(substr) {
+function GetVkCities(substr,countryID) {
     return new Promise(function (resolve, reject) {
         search_name=encodeURIComponent(substr);
-        var searchQuery = "https://api.vk.com/api.php?oauth=1&method=database.getCities&v=5.5&country_id=1&q="+search_name+"&offset=0&need_all=1&count=1000";
+        var searchQuery = "https://api.vk.com/api.php?oauth=1&method=database.getCities&v=5.5&country_id="+countryID+"&q="+search_name+"&offset=0&need_all=1&count=1000";
         request({
             uri: searchQuery,
             method: "GET",

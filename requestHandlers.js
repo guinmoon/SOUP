@@ -125,8 +125,10 @@ class Person {
 function getCities(response,postData) {
   console.log("Request handler 'getCities' was called.");
   var Cities="empty";
- // console.log(postData);
-   vk.GetVkCities(postData).then(function (value3) {
+  
+  var serialisedData=JSON.parse(postData);
+  //console.log(serialisedData);
+   vk.GetVkCities(serialisedData[0],serialisedData[1].id).then(function (value3) {
     Cities=value3;
     response.writeHead(200, {"Content-Type": "text/plain"});
     response.write(Cities);
