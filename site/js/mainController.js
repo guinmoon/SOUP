@@ -230,8 +230,23 @@ function sleep(ms) {
                                 try{ ProfileUrl=result[i].ProfileURL; }catch(err){}
                                 AvaUrl=""
                                 try{ AvaUrl=result[i].AvaURL; }catch(err){}
-                                Description="";
-                                try{ Description=result[i].ProfileDescr; }catch(err){}
+                                Description_text="";
+                                Description = [];
+                                try{ 
+                                    for(k=0;k<result[i].ProfileDescr.length;k++){
+                                        Description_text=result[i].ProfileDescr[k].toString(); 
+                                        console.log(Description_text);
+                                        descr_class="uncolored";
+                                        descr_prop="";
+                                        descr_value="";
+                                        if(Description_text.indexOf("[colored]")!=-1){
+                                            descr_class="colored";    
+                                        }
+                                        descr_prop=Description_text.substring(0,Description_text.indexOf(":")-1);
+                                        descr_value=Description_text.substring(Description_text.indexOf(":")+1,Description_text.length);
+                                        Description.push({class:descr_class,prop:descr_prop,value:descr_value});
+                                    }
+                                }catch(err){console.log(err.message);}
                                 SocialNetwork="";
                                 try{ SocialNetwork=result[i].SocialNetwork; }catch(err){}
                                 SocialNetwork = "site/imgs/"+SocialNetwork+"_ico.png";

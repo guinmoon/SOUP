@@ -109,7 +109,7 @@
             <tbody>
                 <tr class="peopleTr" ng-repeat="person in list.persons | orderBy:'matchesCount':true | filter:''">
                     <td><a href="{{person.lnk}}"><img class="ava" src="{{person.photo}}"></td>
-                    <td><div ng-repeat="descrItem in person.description track by $index">{{descrItem}}</div></td>
+                    <td><div ng-repeat="descrItem in person.description track by $index" ><div class="{{descrItem.class}}">{{descrItem.prop}}</div>{{descrItem.value}}</div></td>
                     <td><div class="SocialNetwork"><img class="Social" src="{{person.socialNetwork}}" /></div>
                     <div class="MatchesCount">{{person.matchesCount}}</div>
                     </td>

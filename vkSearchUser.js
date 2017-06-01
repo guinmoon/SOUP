@@ -104,9 +104,13 @@ function SearchPeoples(pers,soc,countryFromPost,cityFromPost) {
                             matchesCount++;    
                         ProfileDescription.push("Номер телефона: "+users.items[i].mobile_phone);                        
                     }
-                   
-                    if(users.items[i].city!=undefined&&users.items[i].city.title!=NaN && users.items[i].city.title!=undefined && users.items[i].city.title!=""){
-                        ProfileDescription.push("Город: "+users.items[i].city.title); 
+                    
+                    if(City!=""&&City!=undefined){
+                        ProfileDescription.push("[colored]Город: "+City);
+                    }else{
+                        if(users.items[i].city!=undefined&&users.items[i].city.title!=NaN && users.items[i].city.title!=undefined && users.items[i].city.title!=""){
+                            ProfileDescription.push("Город: "+users.items[i].city.title); 
+                        }
                     }
                     if(users.items[i].bdate!=NaN && users.items[i].bdate!=undefined && users.items[i].bdate!="")
                          ProfileDescription.push("ДР: "+users.items[i].bdate);
