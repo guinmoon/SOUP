@@ -89,7 +89,7 @@ function SearchPeoples(pers,network) {
                         img_src = img_src.replace(")","");
                         var href=$hover("a[class='link people__avatar-link i-bem']").attr('href');
                         var name=$hover("a[class='link serp-item__title-link i-bem']").text();
-                        console.log(name);
+                        //console.log(name);
                         var ProfileDescription=[];
                             ProfileDescription.push(name);
                         var descr=$hover("div[class='people__birth']").text();

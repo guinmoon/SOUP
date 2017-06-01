@@ -45,6 +45,7 @@ var model = {
         //{title:"Russia"},
         
     ],
+    searchResult:"",
     progressBarClassName: "ProgressBarInitialized",
     progressBarValue: 0,
     searchButtonStatus: "false",
@@ -137,7 +138,7 @@ function sleep(ms) {
 
     $scope.socialClicked= function(socName)
     {
-        console.log(socName);
+        //console.log(socName);
         for(i=0;i<$scope.list.socNetworks.length;i++){
             if($scope.list.socNetworks[i]["id"]==socName)
             {
@@ -191,8 +192,8 @@ function sleep(ms) {
     }
 
     $scope.peopleSearch = function (searchValue, searchForm) {
-        console.log(model.cur_city);
-        console.log(model.cur_country);
+        //console.log(model.cur_city);
+        //console.log(model.cur_country);
         var searchInSocials = [{"label":"fb"}];
         if(model.cur_country==null)
             model.cur_country={};
@@ -215,7 +216,7 @@ function sleep(ms) {
             searchInSocials = [{"label":$scope.list.socNetworks[snI]["id"]}];
             searchValue = CountryAndCity.concat(searchRaw);
             searchValue = searchInSocials.concat(searchValue);
-            console.log(searchValue);
+           // console.log(searchValue);
             $http.post("peopleSearch", searchValue).success(function (answ) {
                         $scope.response=answ;
                         result = angular.fromJson(answ);
@@ -246,8 +247,10 @@ function sleep(ms) {
                            // model.searchButtonStatus="";
                         }
                         //console.log(model.progressBarValue);
+                        model.searchResult="Найдено профилей: "+model.persons.length+" ";
+                        console.log(model.persons.length);
                     });
-
+                
             
         }
         
