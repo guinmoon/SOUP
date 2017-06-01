@@ -22,7 +22,7 @@ var model = {
         /*{ id:"4",label: "Страна",value: "",type: "country",event: "➕"},*/
         /*{ id:"5",label: "Город",value: "",type: "city",event: "➕"},*/
         { id:"6",label: "Телефон",value: "+79851763447",type: "phone",event: "➕"},
-        { id:"7",label: "имя пользователя",value: "",type: "userName",event: "➕"}
+        /*{ id:"7",label: "имя пользователя",value: "",type: "userName",event: "➕"}*/
         
     ],
     socNetworks: [
