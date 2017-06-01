@@ -61,7 +61,10 @@ function SearchPeoples(pers,network) {
         }
         var search_name = /*firstname+" "+lastname*/fio;
         search_name=encodeURIComponent(search_name);
-        var searchQuery = "https://yandex.ru/people?text="+search_name+"&lr=36&ps_network="+network;
+        var citySerchStr="";
+        if(City!=""&&City!=undefined)
+            citySerchStr = "&ps_geo="+encodeURIComponent(City);
+        var searchQuery = "https://yandex.ru/people?text="+search_name+"&lr=36&ps_network="+network+citySerchStr;
         request({
             //uri: "http://vk.com",
             uri: searchQuery,
