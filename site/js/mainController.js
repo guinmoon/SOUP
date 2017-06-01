@@ -46,6 +46,7 @@ var model = {
         
     ],
     searchResult:"",
+    serarchResultDisplay:"none",
     progressBarClassName: "ProgressBarInitialized",
     progressBarValue: 0,
     searchButtonStatus: "false",
@@ -247,8 +248,9 @@ function sleep(ms) {
                            // model.searchButtonStatus="";
                         }
                         //console.log(model.progressBarValue);
-                        model.searchResult="Найдено профилей: "+model.persons.length+" ";
-                        console.log(model.persons.length);
+                        model.searchResult=model.persons.length;
+                        model.serarchResultDisplay = "block";
+                        //console.log(model.persons.length);
                     });
                 
             

@@ -48,13 +48,20 @@ html, body{
 }
 
 div.serachResult{
-    font-size: 18px;
-    font-weight: 400;
-    float:right; 
-    vertical-align: middle;
-    padding-top: 11px;
-    padding-right: 20px;
-    color: chocolate;
+    font-size: 12px;
+    /* font-weight: 400; */
+    float: right;
+    /* vertical-align: middle; */
+    margin-top: 10px;
+    margin-right: 5px;
+    color: floralwhite;
+    border-radius: 20px;
+    border-width: 1px;
+    border-color: mediumvioletred;
+    border-style: solid;
+    background: indianred;
+    text-align: center;
+    padding: 5px;
 }
 
 div.networksCheckboxes
