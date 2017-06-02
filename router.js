@@ -55,13 +55,24 @@ function checkAuth(requestHeader){
 }
 
 var allowedUnauthFilesLoad = ["/site/css/passport.css","/site/js/passportController.js","/site/imgs/logo.png"];
+var allowedExtensions = [".css",".js",".png",".gif",".jpg"];
 
 function route(handle, pathname, response, postData,header) {
   //console.log("About to route a request for " + pathname);
   if /*(pathname=="/site/css/main.css"){*/(fs.existsSync("."+pathname)&&pathname!="/") {
      //console.log("File Exist! " + pathname);
       //   console.log("Try Load! " + pathname);
-      
+      var check=false;
+      for(k=0;k<allowedExtensions.length;k++){
+            if(pathname.indexOf(allowedExtensions[k])!=-1)
+            {
+                check=true;
+                break;
+            }
+      }
+      if(!check){
+        return;
+      }
       if(checkAuth(header))
          handle["loadFile"](response, pathname);
       else{
