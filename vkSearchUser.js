@@ -23,6 +23,7 @@ function SearchPeoples(pers,soc,countryFromPost,cityFromPost) {
         ageFrom="";
         ageTo="";
         fio="";
+        ageStr="";
         //lastname="";
         //middlename="";
         inputPhone="";
@@ -34,6 +35,7 @@ function SearchPeoples(pers,soc,countryFromPost,cityFromPost) {
         {
             if(pers[i].type=="bday")
             {
+                ageStr=pers[i].value;
                 if(pers[i].value.indexOf('-')!=-1){
                     var ages=pers[i].value.split('-');
                     ageFrom=ages[0];
@@ -86,23 +88,25 @@ function SearchPeoples(pers,soc,countryFromPost,cityFromPost) {
                 var Peoples = [];
                 for(i=0;i<users.items.length;i++){
                     var matchesCount=0;
-                    if(ageFrom!="")
-                        matchesCount++;
+                    
                     if(fio!="")
                         matchesCount++;
                    /* if(lastname!="")
                         matchesCount++;*/
                     if(City!=""&&City!=undefined)
                         matchesCount++;
-                    if(Country!=""&&Country!=undefined)
-                        matchesCount++;
+                   /* if(Country!=""&&Country!=undefined)
+                        matchesCount++;*/
                     var ProfileDescription=[];
                    
                     ProfileDescription.push(users.items[i].first_name+" "+users.items[i].last_name);
                     if(users.items[i].mobile_phone!=NaN && users.items[i].mobile_phone!=undefined && users.items[i].mobile_phone!=""){
-                        if(usefull.transformPhoneNumber(users.items[i].mobile_phone)==inputPhone)
+                        if(usefull.transformPhoneNumber(users.items[i].mobile_phone)==inputPhone){
                             matchesCount++;    
-                        ProfileDescription.push("Номер телефона: "+users.items[i].mobile_phone);                        
+                            ProfileDescription.push("[colored]Номер телефона: "+users.items[i].mobile_phone);                        
+                        }else{
+                            ProfileDescription.push("Номер телефона: "+users.items[i].mobile_phone);                        
+                        }
                     }
                     
                     if(City!=""&&City!=undefined){
@@ -111,6 +115,10 @@ function SearchPeoples(pers,soc,countryFromPost,cityFromPost) {
                         if(users.items[i].city!=undefined&&users.items[i].city.title!=NaN && users.items[i].city.title!=undefined && users.items[i].city.title!=""){
                             ProfileDescription.push("Город: "+users.items[i].city.title); 
                         }
+                    }
+                    if(ageFrom!=""){
+                        matchesCount++;
+                        ProfileDescription.push("[colored]Возраст: "+ageStr);                        
                     }
                     if(users.items[i].bdate!=NaN && users.items[i].bdate!=undefined && users.items[i].bdate!="")
                          ProfileDescription.push("ДР: "+users.items[i].bdate);

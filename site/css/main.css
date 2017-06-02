@@ -208,6 +208,21 @@ div.region{
     font-size: 11px;
 }
 
+div.colored{
+    display: inline-block;
+    background: #dcf4e2;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 7px;
+    border-style: solid;
+    margin-bottom: 1px;
+    border-width: 1px;
+    border-color: #c7f4d2;
+}
+div.uncolored{
+    display: inline-block;
+}
+
 /* Dropdown Button */
 /*.dropbtn {
     background-color: #4CAF50;

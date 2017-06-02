@@ -241,8 +241,9 @@ function sleep(ms) {
                                         descr_value="";
                                         if(Description_text.indexOf("[colored]")!=-1){
                                             descr_class="colored";    
+                                            Description_text=Description_text.replace("[colored]","");
                                         }
-                                        descr_prop=Description_text.substring(0,Description_text.indexOf(":")-1);
+                                        descr_prop=Description_text.substring(0,Description_text.indexOf(":")+1);
                                         descr_value=Description_text.substring(Description_text.indexOf(":")+1,Description_text.length);
                                         Description.push({class:descr_class,prop:descr_prop,value:descr_value});
                                     }
