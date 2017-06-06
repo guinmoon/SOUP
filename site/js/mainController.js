@@ -15,7 +15,7 @@ var model = {
 
     },
     items: [
-        { id:"0",label: "Ф.И.О или Ник",value: "Дарина Руднева",type: "fio",event: "➕"},
+        { id:"0",label: "Ф.И.О или Ник",value: "Вова Владимиров",type: "fio",event: "➕"},
         /*{ id:"1",label: "Имя",value: "Руднева",type: "firstname",event: "➕"},*/
        /* { id:"2",label: "Отчество",value: "",type: "middlename" ,event: "➕"},*/
         { id:"3",label: "ДР / Возраст",value: "19-29",type: "bday",event: "➕"},

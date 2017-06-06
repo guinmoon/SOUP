@@ -1,6 +1,7 @@
 fs = require('fs')
 var vk = require("./vkSearchUser");
 var ok = require("./okSearchUser");
+var fb = require("./fbSearchUser");
 var yp = require("./ypSearchUser");
 var request = require("request");
 var sha1 = require('sha1');
@@ -184,7 +185,8 @@ function searchPeople(response,postData) {
     neededFunction=ok.SearchPeoples;
   }
   if(socialNetwork=="fbCheckBox"){
-    neededFunction=yp.SearchPeoples;
+    //neededFunction=yp.SearchPeoples;
+    neededFunction=fb.SearchPeoples;
     socId="2";
   }
   if(socialNetwork=="twCheckBox"){

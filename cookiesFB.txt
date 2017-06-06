@@ -1,0 +1,22 @@
+#  Cookie file exported from Firefox, by Cookie Wizard extension, in Netscape format
+
+.facebook.com	TRUE	/	TRUE	0	act	1496740968768%2F6
+
+.facebook.com	TRUE	/	TRUE	1504516238	c_user	1511567141
+
+.facebook.com	TRUE	/	TRUE	1559812538	datr	43E2WQjo9PO5fOFraDeR1vWE
+
+.facebook.com	TRUE	/	TRUE	1512292538	dats	1
+
+.facebook.com	TRUE	/	TRUE	1504516238	fr	01rW33tNGdwyhFkAZ.AWXcvFITPrvtdVyj7J3fJR6Cktk.BYSSrS.qP.Fkx.0.0.BZNnGN.AWVUNWCs
+
+.facebook.com	TRUE	/	TRUE	1559718062	lu	gA
+
+.facebook.com	TRUE	/	TRUE	1504185450	pl	n
+
+.facebook.com	TRUE	/	TRUE	0	presence	EDvF3EtimeF1496741809EuserFA21511567141A2EstateFDutF1496741809092CEchFDp_5f1511567141F2CC
+
+.facebook.com	TRUE	/	TRUE	1559481450	sb	ZWUxWcvsvOcqs54x2BXXUR5k
+
+.facebook.com	TRUE	/	TRUE	1504516238	xs	32%3AQN-vVHVsBjrBww%3A2%3A1496409449%3A6230
+
