@@ -185,8 +185,8 @@ function searchPeople(response,postData) {
     neededFunction=ok.SearchPeoples;
   }
   if(socialNetwork=="fbCheckBox"){
-    //neededFunction=yp.SearchPeoples;
-    neededFunction=fb.SearchPeoples;
+    neededFunction=yp.SearchPeoples;
+    //neededFunction=fb.SearchPeoples;
     socId="2";
   }
   if(socialNetwork=="twCheckBox"){
