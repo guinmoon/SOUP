@@ -3,14 +3,17 @@ var vk = require("./vkSearchUser");
 var ok = require("./okSearchUser");
 var fb = require("./fbSearchUser");
 var yp = require("./ypSearchUser");
+var log = require('./WriteToLog');
 var request = require("request");
 var sha1 = require('sha1');
 var cookieP = require('cookie');
+
 
 var currentJob="nothing";
 
 function passport(response,postData,requestHeader) {
   console.log("Request handler 'passport' was called.");
+  log.writeToLog("Request handler 'passport' was called.");
   var body = fs.readFileSync('site/login.html', 'utf8');
     response.writeHead(200, {"Content-Type": "text/html"});
     response.write(body);
@@ -22,20 +25,24 @@ function logout(response,postData,requestHeader) {
     if(cook==undefined) 
     {
         console.log("Cookies is empty");
+        log.writeToLog("Cookies is empty");
         return false;
     }
     var cookies = cookieP.parse(cook);
     //console.log(cookies);
     if(cookies==undefined){
         console.log("Cookies is empty");
+        log.writeToLog("Cookies is empty");
         return false;
     }
     if(cookies.ses==undefined)
     {
         console.log("Cookies session not found");
+        log.writeToLog("Cookies session not found");
         return false;
     }
-  console.log("Request handler 'logout' was called.");
+    console.log("Request handler 'logout' was called.");
+    log.writeToLog("Request handler 'logout' was called.");
     response.writeHead(200, {"Content-Type": "text/html","Set-Cookie":"ses="+cookies.ses+"; Expires=Thu, 01 Jan 1970 00:00:00 GMT"});
     response.write("success");
     response.end();
@@ -43,6 +50,7 @@ function logout(response,postData,requestHeader) {
 
 function checkAuth(response,postData,requestHeader) {
   console.log("Request handler 'checkAuth' was called.");
+  log.writeToLog("Request handler 'checkAuth' was called.");
   var pData=JSON.parse(postData.toLowerCase());
   var sha1Pass="";
   if(pData[1]!=undefined)
@@ -158,7 +166,7 @@ function stillWaitingForSearch(response,postData) {
 
 function searchPeople(response,postData) {
   console.log("Request handler 'searchPeople' was called.");
-  
+  log.writeToLog("Request handler 'SearchPeoples' was called.");
   //console.log(postData);
   var pers = JSON.parse(postData, function (k,v) {
     if (Array.isArray(this) && v.name) {
@@ -177,7 +185,8 @@ function searchPeople(response,postData) {
   var resultValue=[];
   var socId="2";
   var neededFunction=vk.SearchPeoples;
-  
+  log.writeToLog("Search for "+postData);
+
   if(socialNetwork=="vkCheckBox"){
     neededFunction=vk.SearchPeoples;
   }
@@ -272,7 +281,7 @@ function upload(response) {
 }
 
 exports.start = start;
-exports.upload = upload;
+//exports.upload = upload;
 exports.loadFile = loadFile;
 exports.searchPeople = searchPeople;
 exports.stillWaitingForSearch = stillWaitingForSearch;
