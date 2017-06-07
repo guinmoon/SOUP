@@ -5,3 +5,25 @@
 [2017-06-07 10:01:45] Search for [{"label":"okCheckBox"},{"id":"1","title":"Россия"},{},{"id":"0","label":"Ф.И.О или Ник","value":"Дарина Руднева","type":"fio","event":"➕"},{"id":"3","label":"ДР / Возраст","value":"19-29","type":"bday","event":"➕"},{"id":"6","label":"Телефон","value":"+79851763447","type":"phone","event":"➕"}]
 [2017-06-07 10:01:45] Request handler 'SearchPeoples' was called.
 [2017-06-07 10:01:45] Search for [{"label":"fbCheckBox"},{"id":"1","title":"Россия"},{},{"id":"0","label":"Ф.И.О или Ник","value":"Дарина Руднева","type":"fio","event":"➕"},{"id":"3","label":"ДР / Возраст","value":"19-29","type":"bday","event":"➕"},{"id":"6","label":"Телефон","value":"+79851763447","type":"phone","event":"➕"}]
+[2017-06-07 10:31:29] Request handler 'logout' was called.
+[2017-06-07 10:31:29] Request handler 'passport' was called.
+[2017-06-07 10:31:38] Request handler 'checkAuth' was called.
+[2017-06-07 10:33:38] Request handler 'checkAuth' was called.
+[2017-06-07 10:34:18] Request handler 'checkAuth' was called.
+[2017-06-07 10:34:50] Request handler 'checkAuth' was called.
+[2017-06-07 10:35:13] Request handler 'checkAuth' was called.
+[2017-06-07 10:35:28] Request handler 'checkAuth' was called.
+[2017-06-07 10:38:16] Request handler 'checkAuth' was called.
+[2017-06-07 10:38:34] Request handler 'logout' was called.
+[2017-06-07 10:38:34] Request handler 'passport' was called.
+[2017-06-07 10:38:38] Request handler 'checkAuth' was called.
+[2017-06-07 10:39:19] Request handler 'logout' was called.
+[2017-06-07 10:39:19] Request handler 'passport' was called.
+[2017-06-07 10:39:23] Request handler 'checkAuth' was called.
+[2017-06-07 10:40:56] Request handler 'logout' was called.
+[2017-06-07 10:40:56] Request handler 'passport' was called.
+[2017-06-07 10:41:01] Request handler 'passport' was called.
+[2017-06-07 10:41:05] Request handler 'checkAuth' was called.
+[2017-06-07 10:41:06] Request handler 'logout' was called.
+[2017-06-07 10:41:06] Request handler 'passport' was called.
+[2017-06-07 10:41:12] Request handler 'checkAuth' was called.

@@ -107,14 +107,14 @@ function sleep(ms) {
 
     
     $scope.addItem = function (itemId,itemName,itemEvent) {
-        console.log(itemName);
+       // console.log(itemName);
         if(itemEvent=="➕"){
             
             for(i=0;i<$scope.list.items.length;i++)
             {
                 if($scope.list.items[i]["id"]==itemId)
                 {
-                    console.log($scope.list.idCounter);
+                  //  console.log($scope.list.idCounter);
                     $scope.list.idCounter++;
                     $scope.list.items.splice(i+1,0,
                     {id:$scope.list.idCounter, label: $scope.list.items[i]["label"],value: "",type: $scope.list.items[i]["type"],event: "➖"});
@@ -124,12 +124,12 @@ function sleep(ms) {
             
         }
         if(itemEvent=="➖"){
-            console.log(itemId);
+         //   console.log(itemId);
             for(i=0;i<$scope.list.items.length;i++)
             {
                 if($scope.list.items[i]["id"]==itemId)
                 {
-                    console.log($scope.list.items[i]["label"]);
+                 //   console.log($scope.list.items[i]["label"]);
                     $scope.list.items.splice(i,1);
                     break;
                 }
@@ -235,7 +235,7 @@ function sleep(ms) {
                                 try{ 
                                     for(k=0;k<result[i].ProfileDescr.length;k++){
                                         Description_text=result[i].ProfileDescr[k].toString(); 
-                                        console.log(Description_text);
+                                       // console.log(Description_text);
                                         descr_class="uncolored";
                                         descr_prop="";
                                         descr_value="";

@@ -57,27 +57,34 @@ function checkAuth(response,postData,requestHeader) {
     sha1Pass=sha1(pData[1]);
   var contents = fs.readFileSync('users.txt', 'utf8');
   var lines=contents.toLowerCase().split("\r\n");
-  
+  var checkA= false;
   for(i=0;i<lines.length;i++){
       var parts=lines[i].split(":");
       uname=parts[0];
       uhash=parts[2];
+      
       if(uname==pData[0]&&uhash==sha1Pass){
+        
         var usession=sha1(uname+uhash+requestHeader['user-agent']);
        // console.log("session:"+usession);
         response.writeHead(200, {"Content-Type": "text/html","Set-Cookie":"ses="+usession});
         response.write("success");
-        break;
-      }
-      else{
-        response.writeHead(200, {"Content-Type": "text/html"});
-        response.write("fail");
+        response.end();
+        checkA = true;
+        return;
       }
 
   }
+  if(!checkA)
+  {
+      response.writeHead(200, {"Content-Type": "text/html"});
+      response.write("fail");
+      response.end();
+      return;
+  }
   
-  //response.write(body);
-  response.end();
+  
+  
 }
 
 function getUserNameByHash(hash,user_agent){
