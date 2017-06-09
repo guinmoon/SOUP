@@ -168,10 +168,13 @@ function exportToWord(response,postData) {
     getAllUsersInfo(serialisedData).then(function (value3) {
         console.log(value3);
         docx.generateDocxFile(value3);
-        var ressss=JSON.stringify(value3);
-        response.writeHead(200, {"Content-Type": "text/plain"});
-        response.write(ressss);
-        response.end(); 
+        //var ressss=JSON.stringify(value3);
+        response.writeHead(200, {"Content-Type": "application/octet-stream"});
+        var s = fs.createReadStream("./output.docx");
+        s.on('open', function () {
+            s.pipe(response);
+        });
+       // response.end(); 
     });
 }
 
