@@ -4,7 +4,11 @@ var Docxtemplater = require('docxtemplater');
 var fs = require('fs');
 var path = require('path');
 
-
+function generateDocxData(fileTextData){
+    var profiles={"profiles":fileTextData};
+    return profiles;
+    //var resultData ={"profiles"}
+}
 
 function generateDocxFile(fileTextData)
 {
@@ -18,7 +22,8 @@ function generateDocxFile(fileTextData)
     doc.loadZip(zip);
 
     //set the templateVariables
-    doc.setData(fileTextData);
+    var dataToWrite=generateDocxData(fileTextData);
+    doc.setData(dataToWrite);
 
     try {
         // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
@@ -43,3 +48,5 @@ function generateDocxFile(fileTextData)
     fs.writeFileSync(path.resolve(__dirname, 'output.docx'), buf);
 
 }
+
+exports.generateDocxFile = generateDocxFile;

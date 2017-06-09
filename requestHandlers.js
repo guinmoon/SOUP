@@ -1,13 +1,15 @@
 fs = require('fs')
+var request = require("request");
+var sha1 = require('sha1');
+var cookieP = require('cookie');
+
 var vk = require("./vkSearchUser");
 var vkInf = require("./vkUserInfo");
 var ok = require("./okSearchUser");
 var fb = require("./fbSearchUser");
 var yp = require("./ypSearchUser");
 var log = require('./WriteToLog');
-var request = require("request");
-var sha1 = require('sha1');
-var cookieP = require('cookie');
+var docx = require('./docxGenerator');
 
 
 var currentJob="nothing";
@@ -146,7 +148,7 @@ function getAllUsersInfo(serialisedData){
             if(serialisedData[i].socialNetwork=="site/imgs/vk_ico.png")
             {
                 vkInf.GetUserInfo(serialisedData[i].lnk).then(function (value3) {
-                    profiles.push(value3[0]);
+                    profiles.push(value3);
                     //console.log(value3);
                     counter++;
                     if(counter==serialisedData.length)
@@ -165,6 +167,7 @@ function exportToWord(response,postData) {
     var serialisedData=JSON.parse(postData);
     getAllUsersInfo(serialisedData).then(function (value3) {
         console.log(value3);
+        docx.generateDocxFile(value3);
         var ressss=JSON.stringify(value3);
         response.writeHead(200, {"Content-Type": "text/plain"});
         response.write(ressss);
