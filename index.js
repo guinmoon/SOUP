@@ -14,5 +14,6 @@ handle["/getCities"] = requestHandlers.getCities;
 handle["passport"] = requestHandlers.passport;
 handle["/checkAuth"] = requestHandlers.checkAuth;
 handle["/logout"] = requestHandlers.logout;
+handle["/exportToWord"] = requestHandlers.exportToWord;
 
 server.start(router.route, handle);

@@ -15,13 +15,13 @@ var model = {
 
     },
     items: [
-        { id:"0",label: "Ф.И.О или Ник",value: "Вова Владимиров",type: "fio",event: "➕"},
+        { id:"0",label: "Ф.И.О или Ник",value: "Nika Danilova",type: "fio",event: "➕"},
         /*{ id:"1",label: "Имя",value: "Руднева",type: "firstname",event: "➕"},*/
        /* { id:"2",label: "Отчество",value: "",type: "middlename" ,event: "➕"},*/
-        { id:"3",label: "ДР / Возраст",value: "19-29",type: "bday",event: "➕"},
+        { id:"3",label: "ДР / Возраст",value: "16-49",type: "bday",event: "➕"},
         /*{ id:"4",label: "Страна",value: "",type: "country",event: "➕"},*/
         /*{ id:"5",label: "Город",value: "",type: "city",event: "➕"},*/
-        { id:"6",label: "Телефон",value: "+79851763447",type: "phone",event: "➕"},
+        { id:"6",label: "Телефон",value: "89171137557",type: "phone",event: "➕"},
         /*{ id:"7",label: "имя пользователя",value: "",type: "userName",event: "➕"}*/
         
     ],
@@ -183,6 +183,23 @@ function sleep(ms) {
         });
     };
 
+    $scope.exportClicked = function(){
+        var checkedPersons=[];
+        for(i=0;i<model.persons.length;i++){
+            if(model.persons[i].checked=='YES')
+                checkedPersons.push(model.persons[i]);
+        }
+        postData = checkedPersons;
+        $http.post("exportToWord", postData).success(function (answ) {
+            $scope.response=answ;
+            result = angular.fromJson(answ);
+            
+            
+            console.log(result);
+            //console.log(model.Countries);              
+        });
+    }
+
     $scope.logout = function(){
         console.log("logout");
         $http.post("logout","").success(function (answ) {
@@ -254,7 +271,7 @@ function sleep(ms) {
                                 MatchesCount="";
                                 try{ MatchesCount=result[i].MatchesCount; }catch(err){}
                                 model.persons.push({"lnk":ProfileUrl,"description":Description,
-                                "photo":AvaUrl,"socialNetwork":SocialNetwork,"matchesCount":MatchesCount});
+                                "photo":AvaUrl,"socialNetwork":SocialNetwork,"matchesCount":MatchesCount,"checked":"NO"});
                         }
                         
                         model.progressBarValue = ((currentSocNum+1)/checkedSocialCount)*100;

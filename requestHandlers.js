@@ -1,5 +1,6 @@
 fs = require('fs')
 var vk = require("./vkSearchUser");
+var vkInf = require("./vkUserInfo");
 var ok = require("./okSearchUser");
 var fb = require("./fbSearchUser");
 var yp = require("./ypSearchUser");
@@ -137,6 +138,39 @@ class Person {
 // 17 - FourSquare
 // 18 - instagram
 
+function getAllUsersInfo(serialisedData){
+    return new Promise(function (resolve, reject) {
+        var profiles=[];
+        var counter=0;
+        for(i=0;i<serialisedData.length;i++){
+            if(serialisedData[i].socialNetwork=="site/imgs/vk_ico.png")
+            {
+                vkInf.GetUserInfo(serialisedData[i].lnk).then(function (value3) {
+                    profiles.push(value3[0]);
+                    //console.log(value3);
+                    counter++;
+                    if(counter==serialisedData.length)
+                      resolve(profiles);
+                });
+                
+            }      
+        }
+        //console.log(ressss);    
+        
+    });
+}
+
+function exportToWord(response,postData) {
+    console.log("Request handler 'exportToWord' was called.");
+    var serialisedData=JSON.parse(postData);
+    getAllUsersInfo(serialisedData).then(function (value3) {
+        console.log(value3);
+        var ressss=JSON.stringify(value3);
+        response.writeHead(200, {"Content-Type": "text/plain"});
+        response.write(ressss);
+        response.end(); 
+    });
+}
 
 function getCities(response,postData) {
   console.log("Request handler 'getCities' was called.");
@@ -267,7 +301,8 @@ function loadFile(response,pathName) {
     var css = fs.readFileSync(pathName, 'utf8');
     if(pathName.indexOf(".css")!=-1)
       response.writeHead(200, {"Content-Type": "text/css"});
-    if(pathName.indexOf(".png")!=-1){
+    if(pathName.indexOf(".png")!=-1||pathName.indexOf(".woff")!=-1
+    ||pathName.indexOf(".woff2")!=-1||pathName.indexOf(".ttf")!=-1){
       response.writeHead(200, {"Content-Type": "image/png"});
       var s = fs.createReadStream(pathName);
       s.on('open', function () {
@@ -297,3 +332,4 @@ exports.getCities = getCities;
 exports.passport = passport;
 exports.checkAuth = checkAuth;
 exports.logout = logout;
+exports.exportToWord = exportToWord;
