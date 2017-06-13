@@ -55,7 +55,7 @@ function checkAuth(requestHeader){
 }
 
 var allowedUnauthFilesLoad = ["/site/css/passport.css","/site/js/passportController.js","/site/imgs/logo.png"];
-var allowedExtensions = [".css",".js","ttf","woff","woff2",".png",".gif",".jpg"];
+var allowedExtensions = [".css",".js","ttf",".woff",".woff2",".png",".gif",".jpg",".docx"];
 
 function route(handle, pathname, response, postData,header) {
   //console.log("About to route a request for " + pathname);

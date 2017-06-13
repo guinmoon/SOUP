@@ -44,6 +44,9 @@ function GetUserInfo(inputData) {
                 var living="";
                 var ava="";
                 var phone="";
+                var universities="";
+                var schools="";
+                var career="";
                 if(userInfo.first_name!=undefined)
                     fio+=userInfo.first_name;
                 if(userInfo.nickname!=undefined)
@@ -60,10 +63,31 @@ function GetUserInfo(inputData) {
                     phone=userInfo.mobile_phone;
                 if(userInfo.home_phone!=undefined)
                     phone+=" "+userInfo.home_phone;
+                if(userInfo.universities!=undefined){
+                    for(k=0;k<userInfo.universities.length;k++){
+                        universities+="("+k.toString()+") "+userInfo.universities[k].name
+                        +", "+userInfo.universities[k].faculty_name+", "+userInfo.universities[k].chair_name+" ";
+                    }
+                }
+                 if(userInfo.schools!=undefined){
+                    for(k=0;k<userInfo.schools.length;k++){
+                        schools+="("+k.toString()+") "+userInfo.schools[k].name+" ";
+                    }
+                }
+                 if(userInfo.career!=undefined){
+                    for(k=0;k<userInfo.career.length;k++){
+                        career+="("+k.toString()+") "+userInfo.career[k].company+", "
+                        +userInfo.career[k].position+" ";
+                    }
+                }
+                
                 var infos=[];
                 infos.push({"InfoTitle":"Текущий город","InfoData":living});
                 infos.push({"InfoTitle":"Телефоны","InfoData":phone});
-                var resul={"social":"vk.com","profileName":fio,"ava":ava,"infos":infos};
+                infos.push({"InfoTitle":"Карьера","InfoData":career});
+                infos.push({"InfoTitle":"Учеба","InfoData":universities});
+                infos.push({"InfoTitle":"Школа","InfoData":schools});
+                var resul={"social":"vk.com","profileName":fio,"image":ava,"infos":infos};
                 resolve(resul);
             });
         });

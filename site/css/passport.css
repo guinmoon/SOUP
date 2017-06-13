@@ -12,6 +12,7 @@ html, body{
     padding: 45px;
     padding-bottom: 70px;
     background: aliceblue;
+    z-index: 100;
 }
 .form-group{
     margin-top: 10px;
@@ -22,6 +23,7 @@ html, body{
     left: 0;
     bottom: 0;
     opacity: 0.12;
+    z-index: 1;
 }
 .loginStatus{
     color: red;
