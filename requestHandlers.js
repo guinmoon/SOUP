@@ -6,6 +6,7 @@ var cookieP = require('cookie');
 var vk = require("./vkSearchUser");
 var vkInf = require("./vkUserInfo");
 var ok = require("./okSearchUser");
+var okInf = require("./okUserInfo");
 var fb = require("./fbSearchUser");
 var yp = require("./ypSearchUser");
 var log = require('./WriteToLog');
@@ -154,8 +155,19 @@ function getAllUsersInfo(serialisedData){
                     if(counter==serialisedData.length)
                       resolve(profiles);
                 });
-                
-            }      
+            }
+            if(serialisedData[i].socialNetwork=="site/imgs/ok_ico.png")
+            {
+                okInf.GetUserInfo(serialisedData[i].lnk).then(function (value3) {
+                    profiles.push(value3);
+                    //console.log(value3);
+                    counter++;
+                    if(counter==serialisedData.length)
+                      resolve(profiles);
+                });
+            }
+
+
         }
         //console.log(ressss);    
         

@@ -192,8 +192,8 @@ function sleep(ms) {
         postData = checkedPersons;
         $http.post("exportToWord", postData).success(function (answ) {
             $scope.response=answ;
-            if(answ=="success")
-                location.pathname="/output.docx";
+           /* if(answ=="success")
+                location.pathname="/output.docx";*/
             
             console.log(answ);
             //console.log(model.Countries);              
