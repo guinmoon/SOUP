@@ -165,13 +165,15 @@ function getAllUsersInfo(serialisedData){
 function exportToWord(response,postData) {
     console.log("Request handler 'exportToWord' was called.");
     var serialisedData=JSON.parse(postData);
-    getAllUsersInfo(serialisedData).then(function (value3) {
+    getAllUsersInfo(serialisedData).then(function (value1) {
         //console.log(value3);
-        docx.generateDocxFile(value3);
-        //var ressss=JSON.stringify(value3);
-        response.writeHead(200, {"Content-Type": "application/octet-stream"});
-        response.write("success");
-        response.end();
+        docx.generateDocxFile(value1).then(function (value3){;
+          console.log("report generate was succesfull");
+          //var ressss=JSON.stringify(value3);
+          response.writeHead(200, {"Content-Type": "application/octet-stream"});
+          response.write("success");
+          response.end();
+        });
        // response.end(); 
     });
 }
@@ -187,7 +189,7 @@ function getCities(response,postData) {
     response.writeHead(200, {"Content-Type": "text/plain"});
     response.write(Cities);
     response.end(); 
-  })
+  });
 }
 
 function getCountries(response,postData) {
@@ -312,6 +314,13 @@ function loadFile(response,pathName) {
       s.on('open', function () {
           s.pipe(response);
       });
+    }
+    else if(pathName.indexOf(".docx")!=-1){
+        response.writeHead(200, {"Content-Type": "application/zip"});
+        var s = fs.createReadStream(pathName);
+        s.on('open', function () {
+          s.pipe(response);
+        });
     }
     else{
       response.write(css);

@@ -84,44 +84,46 @@ function generateDocxData(TextData){
 function generateDocxFile(fileTextData)
 {
         //Load the docx file as a binary
-    var content = fs
-        .readFileSync(path.resolve(__dirname, 'template.docx'), 'binary');
+    return new Promise(function (resolve, reject) {
+        var content = fs
+            .readFileSync(path.resolve(__dirname, 'template.docx'), 'binary');
 
-    var zip = new JSZip(content);
+        var zip = new JSZip(content);
 
-    var doc = new Docxtemplater();
-    var imageModule=new ImageModule(opts);
-    doc.attachModule(imageModule);
-    doc.loadZip(zip);
+        var doc = new Docxtemplater();
+        var imageModule=new ImageModule(opts);
+        doc.attachModule(imageModule);
+        doc.loadZip(zip);
 
 
-    //set the templateVariables
-    generateDocxData(fileTextData).then(function (value3) {
-        var dataToWrite = value3;
-        //console.log(dataToWrite);
-        doc.setData(dataToWrite);
-        try {
-            
-            doc.render()
-        }
-        catch (error) {
-            var e = {
-                message: error.message,
-                name: error.name,
-                stack: error.stack,
-                properties: error.properties,
+        //set the templateVariables
+        generateDocxData(fileTextData).then(function (value3) {
+            var dataToWrite = value3;
+            //console.log(dataToWrite);
+            doc.setData(dataToWrite);
+            try {
+                
+                doc.render()
             }
-            console.log(JSON.stringify({error: e}));
+            catch (error) {
+                var e = {
+                    message: error.message,
+                    name: error.name,
+                    stack: error.stack,
+                    properties: error.properties,
+                }
+                console.log(JSON.stringify({error: e}));
+                
+                throw error;
+            }
+
+            var buf = doc.getZip()
+                        .generate({type: 'nodebuffer'});
+
             
-            throw error;
-        }
-
-        var buf = doc.getZip()
-                    .generate({type: 'nodebuffer'});
-
-        
-        fs.writeFileSync(path.resolve(__dirname, 'output.docx'), buf);
-        
+            fs.writeFileSync(path.resolve(__dirname, 'output.docx'), buf);
+            resolve("generated");
+        });
     });
    
 

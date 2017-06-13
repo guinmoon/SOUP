@@ -192,10 +192,10 @@ function sleep(ms) {
         postData = checkedPersons;
         $http.post("exportToWord", postData).success(function (answ) {
             $scope.response=answ;
-            result = angular.fromJson(answ);
+            if(answ=="success")
+                location.pathname="/output.docx";
             
-            
-            console.log(result);
+            console.log(answ);
             //console.log(model.Countries);              
         });
     }
