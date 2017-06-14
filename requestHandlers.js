@@ -226,9 +226,9 @@ function stillWaitingForSearch(response,postData) {
     response.end();
 }
 
-function searchPeople(response,postData) {
-  console.log("Request handler 'searchPeople' was called.");
-  log.writeToLog("Request handler 'SearchPeoples' was called.");
+function searchPeople(response,postData,header,UserNameGlobal) {
+  console.log("["+UserNameGlobal+"] Request handler 'searchPeople' was called.");
+  log.writeToLog("["+UserNameGlobal+"] Request handler 'SearchPeoples' was called.");
   //console.log(postData);
   var pers = JSON.parse(postData, function (k,v) {
     if (Array.isArray(this) && v.name) {
@@ -315,7 +315,7 @@ function searchPeople(response,postData) {
     
 }
 
-function loadFile(response,pathName) {
+function loadFile(response,pathName,header,UserNameGlobal) {
     console.log("Request handler 'loadFile' was called. "+pathName);
     if(pathName.charAt(0) === '/')
       pathName = pathName.substr(1);

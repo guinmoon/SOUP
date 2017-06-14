@@ -409,3 +409,9 @@
 [2017-06-14 11:11:26] Search for [{"label":"okCheckBox"},{"id":"1","title":"Россия"},{},{"id":"0","label":"Ф.И.О или Ник","value":"Nika Danilova","type":"fio","event":"➕"},{"id":"3","label":"ДР / Возраст","value":"16-49","type":"bday","event":"➕"},{"id":"6","label":"Телефон","value":"89171137557","type":"phone","event":"➕"}]
 [2017-06-14 11:11:26] Request handler 'SearchPeoples' was called.
 [2017-06-14 11:11:26] Search for [{"label":"fbCheckBox"},{"id":"1","title":"Россия"},{},{"id":"0","label":"Ф.И.О или Ник","value":"Nika Danilova","type":"fio","event":"➕"},{"id":"3","label":"ДР / Возраст","value":"16-49","type":"bday","event":"➕"},{"id":"6","label":"Телефон","value":"89171137557","type":"phone","event":"➕"}]
+[2017-06-14 15:22:49] [User] Request handler 'SearchPeoples' was called.
+[2017-06-14 15:22:49] Search for [{"label":"vkCheckBox"},{"id":"1","title":"Россия"},{},{"id":"0","label":"Ф.И.О или Ник","value":"Nika Danilova","type":"fio","event":"➕"},{"id":"3","label":"ДР / Возраст","value":"16-49","type":"bday","event":"➕"},{"id":"6","label":"Телефон","value":"89171137557","type":"phone","event":"➕"}]
+[2017-06-14 15:22:49] [User] Request handler 'SearchPeoples' was called.
+[2017-06-14 15:22:49] Search for [{"label":"okCheckBox"},{"id":"1","title":"Россия"},{},{"id":"0","label":"Ф.И.О или Ник","value":"Nika Danilova","type":"fio","event":"➕"},{"id":"3","label":"ДР / Возраст","value":"16-49","type":"bday","event":"➕"},{"id":"6","label":"Телефон","value":"89171137557","type":"phone","event":"➕"}]
+[2017-06-14 15:22:49] [User] Request handler 'SearchPeoples' was called.
+[2017-06-14 15:22:49] Search for [{"label":"fbCheckBox"},{"id":"1","title":"Россия"},{},{"id":"0","label":"Ф.И.О или Ник","value":"Nika Danilova","type":"fio","event":"➕"},{"id":"3","label":"ДР / Возраст","value":"16-49","type":"bday","event":"➕"},{"id":"6","label":"Телефон","value":"89171137557","type":"phone","event":"➕"}]

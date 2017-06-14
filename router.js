@@ -74,7 +74,7 @@ function route(handle, pathname, response, postData,header) {
         return;
       }
       if(checkAuth(header))
-         handle["loadFile"](response, pathname);
+         handle["loadFile"](response, pathname,header,UserNameGlobal);
       else{
          var check=false;
          for(i=0;i<allowedUnauthFilesLoad.length;i++)
