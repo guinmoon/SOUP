@@ -156,15 +156,18 @@ function getAllUsersInfo(serialisedData){
                       resolve(profiles);
                 });
             }
-            if(serialisedData[i].socialNetwork=="site/imgs/ok_ico.png")
+            else if(serialisedData[i].socialNetwork=="site/imgs/ok_ico.png")
             {
-                okInf.GetUserInfo(serialisedData[i].lnk).then(function (value3) {
-                    profiles.push(value3);
+                okInf.GetUserInfo(serialisedData[i].lnk).then(function (value4) {
+                    profiles.push(value4);
                     //console.log(value3);
                     counter++;
                     if(counter==serialisedData.length)
                       resolve(profiles);
                 });
+            }
+            else{
+              counter++;
             }
 
 

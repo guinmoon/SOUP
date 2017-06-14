@@ -45,6 +45,7 @@ var model = {
         //{title:"Russia"},
         
     ],
+    reportGeneratingVisible:"none",
     searchResult:"",
     serarchResultDisplay:"none",
     progressBarClassName: "ProgressBarInitialized",
@@ -190,10 +191,13 @@ function sleep(ms) {
                 checkedPersons.push(model.persons[i]);
         }
         postData = checkedPersons;
+        model.reportGeneratingVisible = "block";
         $http.post("exportToWord", postData).success(function (answ) {
             $scope.response=answ;
-           /* if(answ=="success")
-                location.pathname="/output.docx";*/
+            if(answ=="success"){
+                location.pathname="/output.docx";
+                model.reportGeneratingVisible = "none";
+            }
             
             console.log(answ);
             //console.log(model.Countries);              

@@ -6,7 +6,7 @@ sizeOf=require('image-size');
 var fs = require('fs');
 var url = require("url");
 var path = require("path");
-
+var randomstring = require("randomstring");
 
 
 var opts = {}
@@ -27,7 +27,12 @@ opts.getSize=function(img) {
 
 function getFileNameFromUrl(urli){  
     var parsed = url.parse(urli);
-    return path.basename(parsed.pathname);
+    var imageName=path.basename(parsed.pathname);
+    imageName = imageName.toLowerCase();
+    //console.log(imageName);
+    if(imageName!=undefined&&(imageName.indexOf(".jpg")==-1)&&(imageName.indexOf(".png")==-1)&&(imageName.indexOf(".gif")==-1))
+        imageName = randomstring.generate(20)+".jpg";
+    return imageName;
 }
 
 var download = function(uri, filename, callback){
@@ -47,15 +52,12 @@ function generateDocxData(TextData){
         for(i=0;i<fileTextData.length;i++){
            // console.log(fileTextData[i]);
             try{
-                download(fileTextData[i].image, ".\\tmp\\"+getFileNameFromUrl(fileTextData[i].image), function(){
-                    //console.log(fileTextData[i]);
-                    // 
+                var imgNewName=".\\tmp\\"+getFileNameFromUrl(fileTextData[i].image);
+                var dwnLnk=fileTextData[i].image;
+                fileTextData[i].image = imgNewName;
+                download(dwnLnk, imgNewName, function(){
                     counter++;
                     if(counter==fileTextData.length){
-                        for(j=0;j<fileTextData.length;j++)
-                        {
-                            fileTextData[j].image = ".\\tmp\\"+getFileNameFromUrl(fileTextData[j].image);
-                        }
                         var profiles={"profiles":fileTextData};
                         resolve(profiles);
                     }
@@ -66,10 +68,6 @@ function generateDocxData(TextData){
                 counter++;
                 fileTextData[i].image = ".\\tmp\\camera_200.png";
                 if(counter==fileTextData.length){
-                        for(j=0;j<fileTextData.length;j++)
-                        {
-                            fileTextData[j].image = ".\\tmp\\"+getFileNameFromUrl(fileTextData[j].image);
-                        }
                         var profiles={"profiles":fileTextData};
                         resolve(profiles);
                 }
@@ -106,15 +104,8 @@ function generateDocxFile(fileTextData)
                 doc.render()
             }
             catch (error) {
-                var e = {
-                    message: error.message,
-                    name: error.name,
-                    stack: error.stack,
-                    properties: error.properties,
-                }
-                console.log(JSON.stringify({error: e}));
-                
-                throw error;
+                console.log(JSON.stringify(error));
+               // throw error;
             }
 
             var buf = doc.getZip()
