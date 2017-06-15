@@ -4,7 +4,7 @@ function writeToLog(message){
     
     var dt = dateTime.create();
     var formatted = dt.format('Y-m-d H:M:S');
-    fs.appendFileSync('log.txt',"\n["+formatted+"] "+message);
+    //fs.appendFileSync('log.txt',"\n["+formatted+"] "+message);
 }
 
 exports.writeToLog = writeToLog;
