@@ -12,6 +12,7 @@ var fb = require("./fbSearchUser");
 var yp = require("./ypSearchUser");
 var log = require('./WriteToLog');
 var docx = require('./docxGenerator');
+var SQLite = require('./sqliteFunctions');
 
 
 

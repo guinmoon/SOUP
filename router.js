@@ -1,23 +1,39 @@
 
 var cookieP = require('cookie');
 var sha1 = require('sha1');
+var SQLite = require('./sqliteFunctions');
+var sleep = require('system-sleep');
 
 function getUserNameByHash(hash,user_agent){
-    var contents = fs.readFileSync('users.txt', 'utf8');
-    var lines=contents.split("\r\n");
-
-    for(i=0;i<lines.length;i++){
-        var parts=lines[i].split(":");
-        uname=parts[0].toLowerCase();
-        Uname=parts[0];
-        uhash=parts[2].toLowerCase();
+    var U_name="";
+    var users =SQLite.selectQuerySync("SELECT * FROM users");
+    for(i=0;i<users.length;i++){
+        uname=users[i].u_name.toLowerCase();
+        Uname=users[i].u_name;
+        uhash=users[i].u_hash.toLowerCase();
         ifsession=sha1(uname+uhash+user_agent);
         if(hash==ifsession)
         {
+            console.log(ifsession+" "+hash);
             return Uname;
         }
     }
-    return "NF";
+    return "NF";  
+    // var contents = fs.readFileSync('users.txt', 'utf8');
+    // var lines=contents.split("\r\n");
+
+    // for(i=0;i<lines.length;i++){
+    //     var parts=lines[i].split(":");
+    //     uname=parts[0].toLowerCase();
+    //     Uname=parts[0];
+    //     uhash=parts[2].toLowerCase();
+    //     ifsession=sha1(uname+uhash+user_agent);
+    //     if(hash==ifsession)
+    //     {
+    //         return Uname;
+    //     }
+    // }
+    
 }
 
 function checkCookieSession(){
@@ -45,6 +61,7 @@ function checkAuth(requestHeader){
         return false;
     }
     var uname=getUserNameByHash(cookies.ses,requestHeader['user-agent']);
+    console.log(uname);
     if(uname=="NF"||uname==undefined)
     {
         console.log("Cookies session invalid");
@@ -73,20 +90,20 @@ function route(handle, pathname, response, postData,header) {
       if(!check){
         return;
       }
-      if(checkAuth(header))
+      //if(checkAuth(header))
          handle["loadFile"](response, pathname,header,UserNameGlobal);
-      else{
-         var check=false;
-         for(i=0;i<allowedUnauthFilesLoad.length;i++)
-            if(allowedUnauthFilesLoad[i]==pathname){
-                check=true;
-                break;
-            }
-         if(!check)
-            handle["passport"](response, postData,header);
-         else
-            handle["loadFile"](response, pathname);
-      }
+    //   else{
+    //      var check=false;
+    //      for(i=0;i<allowedUnauthFilesLoad.length;i++)
+    //         if(allowedUnauthFilesLoad[i]==pathname){
+    //             check=true;
+    //             break;
+    //         }
+    //      if(!check)
+    //         handle["passport"](response, postData,header);
+    //      else
+    //         handle["loadFile"](response, pathname);
+    //   }
   } else{
         //console.log("Else! " + pathname+" Post:"+postData);
         if (typeof handle[pathname] === 'function') {
