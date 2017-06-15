@@ -62,7 +62,7 @@ function GetUserInfo(inputData) {
                     ava=userInfo.photo_max_orig;
                 if(userInfo.mobile_phone!=undefined)
                     phone=userInfo.mobile_phone;
-                if(userInfo.home_phone!=undefined)
+                if(userInfo.home_phone!=undefined&&userInfo.home_phone!="")
                     phone+=" "+userInfo.home_phone;
                 if(userInfo.universities!=undefined){
                     for(k=0;k<userInfo.universities.length;k++){
@@ -84,11 +84,16 @@ function GetUserInfo(inputData) {
                 
                 var infos=[];
                 infos.push({"InfoTitle":"Ссылка на профиль","InfoData":vkLnkGlobal});
-                infos.push({"InfoTitle":"Текущий город","InfoData":living});
-                infos.push({"InfoTitle":"Телефоны","InfoData":phone});
-                infos.push({"InfoTitle":"Карьера","InfoData":career});
-                infos.push({"InfoTitle":"Учеба","InfoData":universities});
-                infos.push({"InfoTitle":"Школа","InfoData":schools});
+                if(living!=""&&living!=undefined)
+                    infos.push({"InfoTitle":"Текущий город","InfoData":living});
+                if(phone!=""&&phone!=undefined)
+                    infos.push({"InfoTitle":"Телефоны","InfoData":phone});
+                if(career!=""&&career!=undefined)
+                    infos.push({"InfoTitle":"Карьера","InfoData":career});
+                if(universities!=""&&universities!=undefined)
+                    infos.push({"InfoTitle":"Учеба","InfoData":universities});
+                if(schools!=""&&schools!=undefined)
+                    infos.push({"InfoTitle":"Школа","InfoData":schools});
                 var resul={"social":"vk.com","profileName":fio,"image":ava,"infos":infos};
                 resolve(resul);
             });

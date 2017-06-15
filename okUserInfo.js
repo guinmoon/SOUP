@@ -49,9 +49,12 @@ function GetUserInfo(inpData) {
                             var descr=$userInfoBlock("div[class='lh-150']").text();
                             
                             infos.push({"InfoTitle":"Ссылка на профиль","InfoData":okLnkGlobal});
-                            infos.push({"InfoTitle":"О Себе","InfoData":descr});
+                            if(descr!=""&&descr!=undefined)
+                                infos.push({"InfoTitle":"О Себе","InfoData":descr});
                             $userInfoBlock("li[class='tico_ul_li']").each(function(i, elm) {
-                                infos.push({"InfoTitle":"Доп. Инфо","InfoData":$userInfoBlock(this).text()});
+                                var textt=$userInfoBlock(this).text()
+                                if(textt!=""&&textt!=undefined)
+                                    infos.push({"InfoTitle":"Доп. Инфо","InfoData":textt});
                             });
                         });
                         var resul={"social":"ok.ru","profileName":fio,"image":ava,"infos":infos};

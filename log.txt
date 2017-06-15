@@ -433,3 +433,7 @@
 [2017-06-15 12:26:37] Search for [{"label":"vkCheckBox"},{"id":"1","title":"Россия"},{},{"id":"0","label":"Ф.И.О или Ник","value":"Abu Said","type":"fio","event":"➕"},{"id":"3","label":"ДР / Возраст","value":"","type":"bday","event":"➕"},{"id":"6","label":"Телефон","value":"89171137557","type":"phone","event":"➕"}]
 [2017-06-15 12:26:37] Request handler 'SearchPeoples' was called.
 [2017-06-15 12:26:37] Search for [{"label":"okCheckBox"},{"id":"1","title":"Россия"},{},{"id":"0","label":"Ф.И.О или Ник","value":"Abu Said","type":"fio","event":"➕"},{"id":"3","label":"ДР / Возраст","value":"","type":"bday","event":"➕"},{"id":"6","label":"Телефон","value":"89171137557","type":"phone","event":"➕"}]
+[2017-06-15 14:42:41] Request handler 'SearchPeoples' was called.
+[2017-06-15 14:42:41] Search for [{"label":"vkCheckBox"},{"id":"1","title":"Россия"},{"id":1,"title":"Москва"},{"id":"0","label":"Ф.И.О или Ник","value":"Abu Said","type":"fio","event":"➕"},{"id":"3","label":"ДР / Возраст","value":"","type":"bday","event":"➕"},{"id":"6","label":"Телефон","value":"89171137557","type":"phone","event":"➕"}]
+[2017-06-15 14:42:41] Request handler 'SearchPeoples' was called.
+[2017-06-15 14:42:41] Search for [{"label":"okCheckBox"},{"id":"1","title":"Россия"},{"id":1,"title":"Москва"},{"id":"0","label":"Ф.И.О или Ник","value":"Abu Said","type":"fio","event":"➕"},{"id":"3","label":"ДР / Возраст","value":"","type":"bday","event":"➕"},{"id":"6","label":"Телефон","value":"89171137557","type":"phone","event":"➕"}]
