@@ -21,6 +21,7 @@ function GetUserInfo(inputData) {
         return new Promise(function (resolve, reject) {
         inputData = inputData.toString();
         vkId = inputData.substring(inputData.indexOf("id")+2);
+        var vkLnkGlobal = inputData;
         //console.log(SearchQuery);
             //For new authorisation
            // ({
@@ -82,6 +83,7 @@ function GetUserInfo(inputData) {
                 }
                 
                 var infos=[];
+                infos.push({"InfoTitle":"Ссылка на профиль","InfoData":vkLnkGlobal});
                 infos.push({"InfoTitle":"Текущий город","InfoData":living});
                 infos.push({"InfoTitle":"Телефоны","InfoData":phone});
                 infos.push({"InfoTitle":"Карьера","InfoData":career});

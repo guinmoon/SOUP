@@ -14,6 +14,7 @@ function GetUserInfo(inpData) {
         return new Promise(function (resolve, reject) {
             var inputData = inpData.toString();
             okLnk = inputData.substring(0,inputData.indexOf("?"));
+            var okLnkGlobal=okLnk;
             //console.log(okLnk);
             var searchQuery = okLnk;
             request({
@@ -47,6 +48,7 @@ function GetUserInfo(inpData) {
                             var $userInfoBlock = cheerio.load($page(this).html());
                             var descr=$userInfoBlock("div[class='lh-150']").text();
                             
+                            infos.push({"InfoTitle":"Ссылка на профиль","InfoData":okLnkGlobal});
                             infos.push({"InfoTitle":"О Себе","InfoData":descr});
                             $userInfoBlock("li[class='tico_ul_li']").each(function(i, elm) {
                                 infos.push({"InfoTitle":"Доп. Инфо","InfoData":$userInfoBlock(this).text()});
