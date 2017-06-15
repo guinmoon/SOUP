@@ -437,3 +437,13 @@
 [2017-06-15 14:42:41] Search for [{"label":"vkCheckBox"},{"id":"1","title":"Россия"},{"id":1,"title":"Москва"},{"id":"0","label":"Ф.И.О или Ник","value":"Abu Said","type":"fio","event":"➕"},{"id":"3","label":"ДР / Возраст","value":"","type":"bday","event":"➕"},{"id":"6","label":"Телефон","value":"89171137557","type":"phone","event":"➕"}]
 [2017-06-15 14:42:41] Request handler 'SearchPeoples' was called.
 [2017-06-15 14:42:41] Search for [{"label":"okCheckBox"},{"id":"1","title":"Россия"},{"id":1,"title":"Москва"},{"id":"0","label":"Ф.И.О или Ник","value":"Abu Said","type":"fio","event":"➕"},{"id":"3","label":"ДР / Возраст","value":"","type":"bday","event":"➕"},{"id":"6","label":"Телефон","value":"89171137557","type":"phone","event":"➕"}]
+[2017-06-15 14:57:15] Request handler 'logout' was called.
+[2017-06-15 14:57:15] Request handler 'passport' was called.
+[2017-06-15 14:57:22] Request handler 'checkAuth' was called.
+[2017-06-15 14:57:24] Request handler 'checkAuth' was called.
+[2017-06-15 14:57:32] [User] Request handler 'SearchPeoples' was called.
+[2017-06-15 14:57:32] Search for [{"label":"vkCheckBox"},{"id":"1","title":"Россия"},{},{"id":"0","label":"Ф.И.О или Ник","value":"Nika Danilova","type":"fio","event":"➕"},{"id":"3","label":"ДР / Возраст","value":"16-49","type":"bday","event":"➕"},{"id":"6","label":"Телефон","value":"89171137557","type":"phone","event":"➕"}]
+[2017-06-15 14:57:32] [User] Request handler 'SearchPeoples' was called.
+[2017-06-15 14:57:32] Search for [{"label":"okCheckBox"},{"id":"1","title":"Россия"},{},{"id":"0","label":"Ф.И.О или Ник","value":"Nika Danilova","type":"fio","event":"➕"},{"id":"3","label":"ДР / Возраст","value":"16-49","type":"bday","event":"➕"},{"id":"6","label":"Телефон","value":"89171137557","type":"phone","event":"➕"}]
+[2017-06-15 14:57:32] [User] Request handler 'SearchPeoples' was called.
+[2017-06-15 14:57:32] Search for [{"label":"fbCheckBox"},{"id":"1","title":"Россия"},{},{"id":"0","label":"Ф.И.О или Ник","value":"Nika Danilova","type":"fio","event":"➕"},{"id":"3","label":"ДР / Возраст","value":"16-49","type":"bday","event":"➕"},{"id":"6","label":"Телефон","value":"89171137557","type":"phone","event":"➕"}]
