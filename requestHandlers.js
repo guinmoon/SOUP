@@ -91,21 +91,21 @@ function checkAuth(response,postData,requestHeader) {
   
 }
 
-function getUserNameByHash(hash,user_agent){
-    var contents = fs.readFileSync('users.txt', 'utf8');
-    var lines=contents.split("\r\n");
+// function getUserNameByHash(hash,user_agent){
+//     var contents = fs.readFileSync('users.txt', 'utf8');
+//     var lines=contents.split("\r\n");
 
-    for(i=0;i<lines.length;i++){
-        var parts=lines[i].split(":");
-        uname=parts[0];
-        uhash=parts[2];
-        ifsession=sha1(uname+uhash+user_agent);
-        if(hash==ifsession)
-        {
-            return uname;
-        }
-    }
-}
+//     for(i=0;i<lines.length;i++){
+//         var parts=lines[i].split(":");
+//         uname=parts[0];
+//         uhash=parts[2];
+//         ifsession=sha1(uname+uhash+user_agent);
+//         if(hash==ifsession)
+//         {
+//             return uname;
+//         }
+//     }
+// }
 
 function start(response,postData,requestHeader,userNameGlobal) {
     
