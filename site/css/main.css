@@ -97,6 +97,7 @@ img.soupIcon{
    /*float:right; */
 }
 
+
 div.ProgressBarInitialized{
     top:50px;
     position: fixed;
@@ -114,6 +115,11 @@ div.ProgressBarInitialized{
 }
 
 .exportToWord{
+    bottom: 110px;
+    position: absolute;
+}
+
+.listsImg{
     bottom: 60px;
     position: absolute;
 }
@@ -122,6 +128,22 @@ div.ProgressBarInitialized{
 {
     -webkit-filter: drop-shadow(5px 5px 5px #888);
     filter: drop-shadow(5px 5px 5px #888);
+}
+
+.listsImg:hover
+{
+    -webkit-filter: drop-shadow(5px 5px 5px #888);
+    filter: drop-shadow(5px 5px 5px #888);
+}
+
+.listsInput{
+    width: 170px;
+    position: fixed;
+    right: 58px;
+    -webkit-transition: 600ms;
+    -moz-transition: 600ms;
+    transition: 600ms;
+    z-index: 1000;    
 }
 
 .networkCheckBoxesChecked

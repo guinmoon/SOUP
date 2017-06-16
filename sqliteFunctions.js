@@ -22,9 +22,17 @@ async function selectQuerySync(query){
     return result;
 }
 
+
+async function getLists(){
+
+    var result = await selectQuerySync("SELECT * FROM lists");
+    //console.log(result);
+    return result;
+}
 //selectQuerySync("SELECT * FROM users");
 
 exports.selectQuerySync = selectQuerySync;
 exports.selectQueryAsync = selectQueryAsync;
+exports.getLists = getLists;
  
 

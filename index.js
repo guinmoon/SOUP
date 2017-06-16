@@ -11,6 +11,7 @@ handle["/peopleSearch"] = requestHandlers.searchPeople;
 handle["/stillWaitingForSearch"] = requestHandlers.stillWaitingForSearch;
 handle["/getCountries"] = requestHandlers.getCountries;
 handle["/getCities"] = requestHandlers.getCities;
+handle["/getLists"] = requestHandlers.getLists;
 handle["passport"] = requestHandlers.passport;
 handle["/checkAuth"] = requestHandlers.checkAuth;
 handle["/logout"] = requestHandlers.logout;

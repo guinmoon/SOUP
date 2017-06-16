@@ -223,6 +223,18 @@ function getCountries(response,postData) {
   
 }
 
+async function getLists(response,postData) {
+  console.log("Request handler 'getLists' was called.");
+  var lists="empty";
+  lists = await SQLite.getLists();
+  console.log(lists);
+  response.writeHead(200, {"Content-Type": "text/plain"});
+  response.write(JSON.stringify(lists));
+  response.end(); 
+  
+  
+}
+
 function stillWaitingForSearch(response,postData) {
   console.log("Request handler 'stillWaitingForSearch' was called.");
     response.writeHead(200, {"Content-Type": "text/plain"});
@@ -365,3 +377,4 @@ exports.passport = passport;
 exports.checkAuth = checkAuth;
 exports.logout = logout;
 exports.exportToWord = exportToWord;
+exports.getLists = getLists;

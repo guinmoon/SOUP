@@ -129,9 +129,17 @@
     </div>
     
     <div id="rightSideBar" class="rightSideBar">
+        <img id="listsImg" class="listsImg" ng-click="showListsClicked()" src="site/imgs/lists.png" />
         <img id="exportToWordImg" class="exportToWord" ng-click="exportClicked()" src="site/imgs/wordExp.png" />
     </div>
-
+    <div id="listsinput" class="listsInput" ng-blur="console.log('blur');" style="display: {{list.listsVisible}}; bottom: {{list.listsBottom}};">
+        <ui-select  ng-model="list.cur_userList">
+            <ui-select-match allow-clear="true" placeholder="Список...">{{$select.selected.title}}</ui-select-match>
+            <ui-select-choices repeat="userList in list.userLists | filter: $select.search">
+                <div ng-bind="country.title"></div>
+            </ui-select-choices>
+        </ui-select>
+    </div>
 <script src="site/js/mainController.js"></script>
 </body>
 </html>

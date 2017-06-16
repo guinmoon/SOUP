@@ -14,6 +14,9 @@ var model = {
     cur_city: {
 
     },
+    cur_userList: {
+
+    },
     items: [
         { id:"0",label: "Ф.И.О или Ник",value: "Nika Danilova",type: "fio",event: "➕"},
         /*{ id:"1",label: "Имя",value: "Руднева",type: "firstname",event: "➕"},*/
@@ -45,7 +48,13 @@ var model = {
         //{title:"Russia"},
         
     ],
+    userLists:[
+        //{title:"Russia"},
+        
+    ],
     reportGeneratingVisible:"none",
+    listsVisible:"block",
+    listsBottom:"-40px",
     searchResult:"",
     serarchResultDisplay:"none",
     progressBarClassName: "ProgressBarInitialized",
@@ -159,6 +168,25 @@ function sleep(ms) {
 
         }
     }
+
+    $scope.showListsClicked = function(){
+        model.listsVisible = "block";
+        model.listsBottom = "10px";
+    }
+
+    $scope.listsFocusLost = function(){
+        console.log("focus lost");
+    }
+
+    $scope.getLists = function() {
+        $http.post("getLists", "").success(function (answ) {
+            $scope.response=answ;
+            result = angular.fromJson(answ); 
+            console.log(result);
+        });
+    };
+
+    $scope.getLists();
 
     $scope.cityTyping = function(typed) {
         postData = [typed,$scope.list.cur_country];
@@ -323,12 +351,12 @@ function closeOpenNav() {
 
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
-function myFunction() {
+/*function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
-
+*/
 // Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
+/*window.onclick = function(event) {
   if (!event.target.matches('.dropbtn')) {
 
     var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -340,4 +368,4 @@ window.onclick = function(event) {
       }
     }
   }
-}
+}*/
