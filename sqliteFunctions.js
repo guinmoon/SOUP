@@ -13,14 +13,12 @@ function selectQueryAsync(query){
     });
 }
 
-function selectQuerySync(query){
+async function selectQuerySync(query){
     var finished=false;
     var result="";
-    selectQueryAsync(query).then(function (value1) {
-        result=value1;   
-        finished = true; 
-    });
-    while(finished==false){sleep(100);}
+    result = await selectQueryAsync(query);
+    //console.log(result);
+    //while(finished==false){sleep(100);}
     return result;
 }
 

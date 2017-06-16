@@ -112,7 +112,7 @@ function checkAuth(response,postData,requestHeader) {
 
 function start(response,postData,requestHeader,userNameGlobal) {
     
-    console.log("Request handler 'start' was called.");
+    console.log("["+userNameGlobal+"] Request handler 'start' was called.");
     var body = fs.readFileSync('site/index.html', 'utf8');
     body=body.replace("[[list.userName]]",userNameGlobal);
     response.writeHead(200, {"Content-Type": "text/html"});
