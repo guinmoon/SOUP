@@ -197,6 +197,15 @@ function exportToWord(response,postData) {
     });
 }
 
+
+async function createNewList(response,postData,header,Uname,UserId) {
+    console.log("Request handler 'createNewList' was called.");
+    var serialisedData=JSON.parse(postData);
+   // console.log(serialisedData);
+    await SQLite.createNewList(serialisedData,UserId);
+    
+}
+
 function getCities(response,postData) {
   console.log("Request handler 'getCities' was called.");
   var Cities="empty";
@@ -378,3 +387,4 @@ exports.checkAuth = checkAuth;
 exports.logout = logout;
 exports.exportToWord = exportToWord;
 exports.getLists = getLists;
+exports.createNewList = createNewList;

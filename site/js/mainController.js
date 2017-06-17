@@ -196,6 +196,25 @@ function sleep(ms) {
 
     $scope.getLists();
 
+    $scope.saveListsClicked = function(){
+        
+        var listName=window.prompt("Ведити название нового списка","Новый Список");
+        //console.log(listName);
+        if(listName==undefined||listName=="")
+            return;
+        var checkedPersons=[];
+        for(i=0;i<model.persons.length;i++){
+            if(model.persons[i].checked=='YES')
+                checkedPersons.push(model.persons[i]);
+        }
+        var postData = {"listName":listName,"personss":checkedPersons};
+        $http.post("createNewList", postData).success(function (answ) {
+            $scope.response=answ;
+            result =answ;
+            console.log(result);
+        });
+    }
+
     $scope.cityTyping = function(typed) {
         postData = [typed,$scope.list.cur_country];
         $http.post("getCities", postData).success(function (answ) {
@@ -213,10 +232,7 @@ function sleep(ms) {
                     area=""
                     try{ area=result.response.items[i].area; }catch(err){}
                     model.Cities.push({"id":cityId,"title":title,"region":region,"area":area});
-            }
-            
-           // console.log(result);
-            //console.log(model.Countries);              
+            }         
         });
     };
 
