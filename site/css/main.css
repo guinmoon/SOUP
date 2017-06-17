@@ -69,7 +69,7 @@ div.networksCheckboxes
     
     width: 400px;
     margin: 0 auto; 
-    float: right;
+    float: none;
     vertical-align: middle;
     padding-top: 5px;
     
