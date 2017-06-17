@@ -223,10 +223,10 @@ function getCountries(response,postData) {
   
 }
 
-async function getLists(response,postData) {
+async function getLists(response,postData,header,Uname,UserId) {
   console.log("Request handler 'getLists' was called.");
   var lists="empty";
-  lists = await SQLite.getLists();
+  lists = await SQLite.getLists(UserId);
   console.log(lists);
   response.writeHead(200, {"Content-Type": "text/plain"});
   response.write(JSON.stringify(lists));

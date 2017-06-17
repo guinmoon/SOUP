@@ -24,7 +24,7 @@ html, body{
     padding-top: 5px;
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
     float:left;
-    max-width:  25%;
+    /*max-width:  25%;*/
      
 }
 
@@ -136,14 +136,38 @@ div.ProgressBarInitialized{
     filter: drop-shadow(5px 5px 5px #888);
 }
 
+.savelistsImg
+{
+    display: inline-block;
+    float: left;
+    margin-top: 1px;
+}
+
+.savelistsImg:hover
+{
+    -webkit-filter: drop-shadow(5px 5px 5px #888);
+    filter: drop-shadow(5px 5px 5px #888);
+}
+
 .listsInput{
-    width: 170px;
+    width: 228px;
     position: fixed;
     right: 58px;
     -webkit-transition: 600ms;
     -moz-transition: 600ms;
     transition: 600ms;
-    z-index: 1000;    
+    z-index: 1000;
+    background: lavender;
+    padding-top: 5px;
+    padding-left: 5px;
+    border-radius: 8px;
+    padding-right: 2px;   
+}
+
+.listsValue{
+    display: inline-block;
+    padding-left: 3px;
+    width: 195px;
 }
 
 .networkCheckBoxesChecked

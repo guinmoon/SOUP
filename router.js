@@ -6,18 +6,19 @@ var sleep = require('system-sleep');
 
 async function getUserNameByHash(hash,user_agent){
     var U_name="";
+    var u_id="";
     var users =await SQLite.selectQuerySync("SELECT * FROM users");
     for(i=0;i<users.length;i++){
         uname=users[i].u_name.toLowerCase();
         Uname=users[i].u_name.toString();
-        
+        u_id= users[i].id;
         uhash=users[i].u_hash.toLowerCase();
         ifsession=sha1(uname+uhash+user_agent);
         if(hash==ifsession)
         {
             //console.log(ifsession+" "+hash);
           //  console.log(Uname);
-            return Uname.toString();
+            return {id:u_id,name:Uname.toString()};
         }
     }
     return "NF";     
@@ -28,6 +29,7 @@ function checkCookieSession(){
 }
 
 var UserNameGlobal="";
+var UserIdGlobal="";
 
 async function checkAuth(requestHeader){
     cook=requestHeader['cookie'];   
@@ -54,7 +56,8 @@ async function checkAuth(requestHeader){
         console.log("Cookies session invalid");
         return false;
     }
-    UserNameGlobal=uname;
+    UserNameGlobal=uname.name;
+    UserIdGlobal=uname.id;
     return true;
 }
 
@@ -96,7 +99,7 @@ async function route(handle, pathname, response, postData,header) {
         //console.log("Else! " + pathname+" Post:"+postData);
         if (typeof handle[pathname] === 'function') {
             if(await checkAuth(header)||pathname=="/checkAuth")
-                handle[pathname](response, postData,header,UserNameGlobal);
+                handle[pathname](response, postData,header,UserNameGlobal,UserIdGlobal);
             else
                 handle["passport"](response, postData,header); 
             

@@ -23,9 +23,9 @@ async function selectQuerySync(query){
 }
 
 
-async function getLists(){
+async function getLists(UserId){
 
-    var result = await selectQuerySync("SELECT * FROM lists");
+    var result = await selectQuerySync("SELECT * FROM lists where user_id="+UserId);
     //console.log(result);
     return result;
 }

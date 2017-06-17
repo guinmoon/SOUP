@@ -52,6 +52,7 @@ var model = {
         //{title:"Russia"},
         
     ],
+    userId:"",
     reportGeneratingVisible:"none",
     listsVisible:"block",
     listsBottom:"-40px",
@@ -171,7 +172,10 @@ function sleep(ms) {
 
     $scope.showListsClicked = function(){
         model.listsVisible = "block";
-        model.listsBottom = "10px";
+        if(model.listsBottom != "10px")
+            model.listsBottom = "10px";
+        else
+            model.listsBottom = "-40px";
     }
 
     $scope.listsFocusLost = function(){
@@ -182,7 +186,11 @@ function sleep(ms) {
         $http.post("getLists", "").success(function (answ) {
             $scope.response=answ;
             result = angular.fromJson(answ); 
-            console.log(result);
+            for(i=0;i<result.length;i++){
+                model.userLists.push({"id":result[i].id,"title":result[i].list_name});
+                
+            }
+            //console.log(result);
         });
     };
 
@@ -338,14 +346,14 @@ function closeOpenNav() {
         document.getElementById("mySidenav").style.paddingLeft = "40px";
         document.getElementById("mySidenav").style.width = "40px";
         document.getElementById("closebtn").innerText='☰';
-        document.getElementById("workArea").style.left='40px';
+        document.getElementById("workArea").style.marginLeft='40px';
     }
     else{
         navOpened=true;
         document.getElementById("mySidenav").style.width = "250px";
         document.getElementById("mySidenav").style.paddingLeft = "5px";
         document.getElementById("closebtn").innerText='×';
-        document.getElementById("workArea").style.left='250px';
+        document.getElementById("workArea").style.marginLeft='250px';
     }
 }
 
