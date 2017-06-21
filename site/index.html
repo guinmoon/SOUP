@@ -134,14 +134,16 @@
     </div>
     <div id="listsinput" class="listsInput" ng-blur="console.log('blur');" style="display: {{list.listsVisible}}; bottom: {{list.listsBottom}};">
         <img id="savelistsImg" class="savelistsImg" ng-click="saveListsClicked()" src="site/imgs/saveasnewlist.png" />
+        <img id="addTolistsImg" class="addTolistsImg" ng-click="addToList(list.cur_userList)" src="site/imgs/addToList.png" />
         <div class="listsValue">
-        <ui-select  ng-model="list.cur_userList">
+        <ui-select  ng-model="list.cur_userList" >
             <ui-select-match allow-clear="true" placeholder="Список...">{{$select.selected.title}}</ui-select-match>
-            <ui-select-choices repeat="userList in list.userLists | filter: $select.search">
+            <ui-select-choices repeat="userList in list.userLists | filter: $select.search" >
                 <div ng-bind="userList.title"></div>
             </ui-select-choices>
         </ui-select>
         </div>
+        <img id="loadlistsImg" class="loadlistsImg" ng-click="listSelected(list.cur_userList)" src="site/imgs/loadList.png" />
     </div>
 <script src="site/js/mainController.js"></script>
 </body>

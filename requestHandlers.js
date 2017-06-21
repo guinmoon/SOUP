@@ -206,6 +206,27 @@ async function createNewList(response,postData,header,Uname,UserId) {
     
 }
 
+async function getListById(response,postData,header,Uname,UserId) {
+  console.log("Request handler 'getListById' was called.");
+  var list="empty";
+  var list_id =postData;
+  list = await SQLite.getListById(list_id,UserId);
+  console.log(list);
+  response.writeHead(200, {"Content-Type": "text/plain"});
+  response.write(JSON.stringify(list));
+  response.end(); 
+}
+
+async function getLists(response,postData,header,Uname,UserId) {
+  console.log("Request handler 'getLists' was called.");
+  var lists="empty";
+  lists = await SQLite.getLists(UserId);
+  //console.log(lists);
+  response.writeHead(200, {"Content-Type": "text/plain"});
+  response.write(JSON.stringify(lists));
+  response.end();  
+}
+
 function getCities(response,postData) {
   console.log("Request handler 'getCities' was called.");
   var Cities="empty";
@@ -232,17 +253,7 @@ function getCountries(response,postData) {
   
 }
 
-async function getLists(response,postData,header,Uname,UserId) {
-  console.log("Request handler 'getLists' was called.");
-  var lists="empty";
-  lists = await SQLite.getLists(UserId);
-  console.log(lists);
-  response.writeHead(200, {"Content-Type": "text/plain"});
-  response.write(JSON.stringify(lists));
-  response.end(); 
-  
-  
-}
+
 
 function stillWaitingForSearch(response,postData) {
   console.log("Request handler 'stillWaitingForSearch' was called.");
@@ -388,3 +399,4 @@ exports.logout = logout;
 exports.exportToWord = exportToWord;
 exports.getLists = getLists;
 exports.createNewList = createNewList;
+exports.getListById = getListById;

@@ -17,5 +17,6 @@ handle["/checkAuth"] = requestHandlers.checkAuth;
 handle["/logout"] = requestHandlers.logout;
 handle["/exportToWord"] = requestHandlers.exportToWord;
 handle["/createNewList"] = requestHandlers.createNewList;
+handle["/getListById"] = requestHandlers.getListById;
 
 server.start(router.route, handle);

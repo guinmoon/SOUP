@@ -18,13 +18,13 @@ var model = {
 
     },
     items: [
-        { id:"0",label: "Ф.И.О или Ник",value: "Nika Danilova",type: "fio",event: "➕"},
+        { id:"0",label: "Ф.И.О или Ник",value: "Мария Смородина",type: "fio",event: "➕"},
         /*{ id:"1",label: "Имя",value: "Руднева",type: "firstname",event: "➕"},*/
        /* { id:"2",label: "Отчество",value: "",type: "middlename" ,event: "➕"},*/
         { id:"3",label: "ДР / Возраст",value: "16-49",type: "bday",event: "➕"},
         /*{ id:"4",label: "Страна",value: "",type: "country",event: "➕"},*/
         /*{ id:"5",label: "Город",value: "",type: "city",event: "➕"},*/
-        { id:"6",label: "Телефон",value: "89171137557",type: "phone",event: "➕"},
+        { id:"6",label: "Телефон",value: "89887605589",type: "phone",event: "➕"},
         /*{ id:"7",label: "имя пользователя",value: "",type: "userName",event: "➕"}*/
         
     ],
@@ -211,7 +211,7 @@ function sleep(ms) {
         $http.post("createNewList", postData).success(function (answ) {
             $scope.response=answ;
             result =answ;
-            console.log(result);
+            //console.log(result);
         });
     }
 
@@ -253,6 +253,63 @@ function sleep(ms) {
             
             console.log(answ);
             //console.log(model.Countries);              
+        });
+    }
+
+    $scope.showList = function(result){
+        model.persons = [];
+        for(i=0;i<result.length;i++)
+        {
+            ProfileUrl="";
+            try{ ProfileUrl=result[i].profileURL; }catch(err){}
+            AvaUrl=""
+            try{ AvaUrl=result[i].imgUrl; }catch(err){}
+            Description_text="";
+            Description = [];
+            try{ 
+                var ProfileDescr = result[i].profileDescr.split("[descr]");
+                for(k=1;k<ProfileDescr.length;k++){
+                    Description_text=ProfileDescr[k].toString(); 
+                    descr_class="uncolored";
+                    descr_prop="";
+                    descr_value="";
+                    descr_prop=Description_text.substring(Description_text.indexOf("[prop]")+6,Description_text.indexOf("[value]"));
+                    descr_value=Description_text.substring(Description_text.indexOf("[value]")+7);
+                    Description.push({class:descr_class,prop:descr_prop,value:descr_value});
+                }
+            }catch(err){console.log(err.message);}
+            SocialNetwork="";
+            try{ SocialNetwork=result[i].socialNetwork; }catch(err){}
+            MatchesCount="0";
+            model.persons.push({"lnk":ProfileUrl,"description":Description,
+            "photo":AvaUrl,"socialNetwork":SocialNetwork,"matchesCount":MatchesCount,"checked":"NO"});
+        }
+    }
+
+    $scope.listSelected = function(selectedList){
+        //console.log(selectedList);
+        postData = selectedList.id;
+        $http.post("getListById", postData).success(function (answ) {
+            $scope.response=answ;
+            result = angular.fromJson(answ);
+            //console.log(result);    
+            $scope.showList(result)
+        });
+    }
+
+    $scope.addToList = function(selectedList){
+        //console.log(selectedList);
+        var checkedPersons=[];
+        for(i=0;i<model.persons.length;i++){
+            if(model.persons[i].checked=='YES')
+                checkedPersons.push(model.persons[i]);
+        }
+        var postData = {"list_id":selectedList.id,"personss":checkedPersons};
+        $http.post("addToList", postData).success(function (answ) {
+            $scope.response=answ;
+            result = angular.fromJson(answ);
+            //console.log(result);    
+            $scope.showList(result)
         });
     }
 

@@ -31,33 +31,52 @@ async function getLists(UserId){
 }
 
 async function createNewList(data,user_id){
-
-  //  return new Promise(function (resolve, reject) { 
         var db = new sqlite3.Database(file);  
         await db.run("INSERT into lists(list_name,user_id) VALUES ('"+data.listName+"',"+user_id+")",function(){
             db.all("SELECT max(id) as id FROM lists where user_id="+user_id, function(err, rows) { 
                //console.log(rows[0].id);
-               var newListId = rows[0].id;
-                var stmt = db.prepare("INSERT INTO listsData(list_id,profileURL,imgUrl,profileDescr) VALUES (?,?,?,?)");
+                var newListId = rows[0].id;
+                var stmt = db.prepare("INSERT INTO listsData(list_id,profileURL,imgUrl,profileDescr,socialNetwork) VALUES (?,?,?,?,?)");
+                
                 for (var i = 0; i < data.personss.length; i++) {
-                    console.log(newListId+" "+data.personss[i].lnk+" "+data.personss[i].photo+" "+"");
-                    stmt.run(newListId,data.personss[i].lnk,data.personss[i].photo,"descr");
+                    //console.log(newListId+" "+data.personss[i].lnk+" "+data.personss[i].photo+" "+"");
+                    //console.log(data.personss[i].description);
+                    var descr="";
+                    for(k=0;k<data.personss[i].description.length;k++){
+                        descr+="[descr]"+"[prop]"+data.personss[i].description[k].prop+"[value]"+data.personss[i].description[k].value;
+                    }
+                    stmt.run(newListId,data.personss[i].lnk,data.personss[i].photo,descr,data.personss[i].socialNetwork);
                 }
                 stmt.finalize();
                 db.close(); 
-                console.log("insert done");
             });
-           
-           
         });
-        
-  //  });
 }
+
+async function getListById(list_id,user_id){
+        var db = new sqlite3.Database(file);  
+        return new Promise(function (resolve, reject) {
+            db.all("SELECT id FROM lists where id="+list_id+" and user_id="+user_id, function(err, rowsTmp) { 
+                if(rowsTmp==undefined||rowsTmp.length==0){
+                    resolve("");
+                }
+                else{
+                    db.all("SELECT profileURL,imgUrl,profileDescr,socialNetwork FROM listsData where list_id="+list_id, function(err, rows) { 
+                        db.close(); 
+                        //console.log(rows);
+                        resolve(rows);
+                    });
+                }
+            });
+        });
+}
+
 //selectQuerySync("SELECT * FROM users");
 
 exports.selectQuerySync = selectQuerySync;
 exports.selectQueryAsync = selectQueryAsync;
 exports.getLists = getLists;
 exports.createNewList = createNewList;
+exports.getListById = getListById;
  
 

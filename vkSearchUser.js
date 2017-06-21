@@ -101,7 +101,7 @@ function SearchPeoples(pers,soc,countryFromPost,cityFromPost) {
                    
                     ProfileDescription.push(users.items[i].first_name+" "+users.items[i].last_name);
                     if(users.items[i].mobile_phone!=NaN && users.items[i].mobile_phone!=undefined && users.items[i].mobile_phone!=""){
-                        if(usefull.transformPhoneNumber(users.items[i].mobile_phone)==inputPhone){
+                        if(usefull.transformPhoneNumber(users.items[i].mobile_phone).indexOf(inputPhone)!=-1){
                             matchesCount++;    
                             ProfileDescription.push("[colored]Номер телефона: "+users.items[i].mobile_phone);                        
                         }else{
