@@ -18,5 +18,6 @@ handle["/logout"] = requestHandlers.logout;
 handle["/exportToWord"] = requestHandlers.exportToWord;
 handle["/createNewList"] = requestHandlers.createNewList;
 handle["/getListById"] = requestHandlers.getListById;
+handle["/addToList"] = requestHandlers.addToList;
 
 server.start(router.route, handle);
