@@ -34,16 +34,23 @@ async function createNewList(data,user_id){
 
   //  return new Promise(function (resolve, reject) { 
         var db = new sqlite3.Database(file);  
-        await db.run("INSERT into lists(list_name,user_id) VALUES ('"+data.listName+"',"+user_id+")");
-        var newListId = await selectQuerySync("SELECT max(id) FROM lists where user_id="+user_id);
-        console.log(newListId);
-        var stmt = db.prepare("INSERT INTO listsData(list_id,profileURL,imgUrl,profileDescr) VALUES (?,'?','?','?')");
-        for (var i = 0; i < data.personss.length; i++) {
-            stmt.run(newListId,data.personss[i].lnk,data.personss[i].photo,"");
-        }
-        stmt.finalize();
-        db.close(); 
-        console.log("insert done");
+        await db.run("INSERT into lists(list_name,user_id) VALUES ('"+data.listName+"',"+user_id+")",function(){
+            db.all("SELECT max(id) as id FROM lists where user_id="+user_id, function(err, rows) { 
+               //console.log(rows[0].id);
+               var newListId = rows[0].id;
+                var stmt = db.prepare("INSERT INTO listsData(list_id,profileURL,imgUrl,profileDescr) VALUES (?,?,?,?)");
+                for (var i = 0; i < data.personss.length; i++) {
+                    console.log(newListId+" "+data.personss[i].lnk+" "+data.personss[i].photo+" "+"");
+                    stmt.run(newListId,data.personss[i].lnk,data.personss[i].photo,"descr");
+                }
+                stmt.finalize();
+                db.close(); 
+                console.log("insert done");
+            });
+           
+           
+        });
+        
   //  });
 }
 //selectQuerySync("SELECT * FROM users");
