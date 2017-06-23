@@ -65,6 +65,7 @@ var allowedUnauthFilesLoad = ["/site/css/passport.css","/site/js/passportControl
 var allowedExtensions = [".css",".js","ttf",".woff",".woff2",".png",".gif",".jpg",".docx"];
 
 async function route(handle, pathname, response, postData,header) {
+    //console.log(pathname);
   if (fs.existsSync("."+pathname)&&pathname!="/") {
       var check=false;
       for(k=0;k<allowedExtensions.length;k++){

@@ -54,34 +54,33 @@ async function createNewList(data,user_id){
 }
 
 async function addToList(list_id,user_id,personss){
-        var db = new sqlite3.Database(file);  
-        //console.log("addCaled");
-    try{
-        await db.all("SELECT id FROM lists where id="+list_id+" and user_id="+user_id, function(err, rowsTmp) { 
-                if(rowsTmp==undefined||rowsTmp.length==0){
-                    db.close(); 
-                    resolve("");
+    var db = new sqlite3.Database(file);  
+    await db.all("SELECT id FROM lists where id="+list_id+" and user_id="+user_id, function(err, rowsTmp) { 
+        if(rowsTmp==undefined||rowsTmp.length==0){
+            db.close(); 
+            resolve("");
+        }
+        else{ 
+            var stmt = db.prepare("INSERT INTO listsData(list_id,profileURL,imgUrl,profileDescr,socialNetwork) VALUES (?,?,?,?,?)");
+            
+            for (var i = 0; i < personss.length; i++) {
+                var descr="";
+                for(k=0;k<personss[i].description.length;k++){
+                    descr+="[descr]"+"[prop]"+personss[i].description[k].prop+"[value]"+personss[i].description[k].value;
                 }
-                else{ 
-                    var stmt = db.prepare("INSERT INTO listsData(list_id,profileURL,imgUrl,profileDescr,socialNetwork) VALUES (?,?,?,?,?)");
-                    
-                    for (var i = 0; i < personss.length; i++) {
-                        var descr="";
-                        for(k=0;k<personss[i].description.length;k++){
-                            descr+="[descr]"+"[prop]"+personss[i].description[k].prop+"[value]"+personss[i].description[k].value;
-                        }
-                        //console.log(descr);
-                        try{
-                            stmt.run(list_id,personss[i].lnk,personss[i].photo,descr,personss[i].socialNetwork);
-                        }
-                        catch(errr){console.log(err.message)}
+                //console.log(descr);
+
+                stmt.run(list_id,personss[i].lnk,personss[i].photo,descr,personss[i].socialNetwork,function(err){
+                    if (err) {
+                        console.log(err);
+                        return;
                     }
-                    stmt.finalize();
-                    db.close(); 
-                }
-        });
-    }
-    catch(err){console.log(err.message)}
+                });
+            }
+            stmt.finalize();
+            db.close(); 
+        }
+    });
 }
 
 async function getListById(list_id,user_id){

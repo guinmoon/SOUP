@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+ * Copyright 2013 The Chromium Authors. All rights reserved.  Use of this
+ * source code is governed by a BSD-style license that can be found in the
+ * LICENSE file.
+-->
+
+<html ng-app="purchaseApp">
+<head>
+<meta charset="utf-8">
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">-->
+<link rel="stylesheet" href="./css/bootstrap.css">
+<link rel="stylesheet" href="./css/main.css">
+<link rel="stylesheet" href="./css/select.css">
+<script src="./js/angular.min.js"></script>
+<script src="./js/jquery-1.12.4.min.js"></script>
+<script src="./js/select.js"></script>
+
+</head>
+  <body ng-controller="purchaseController" ng-cloak>
+    <div id="content">
+      <div id="listsinput" class="listsInput" ng-blur="console.log('blur');" >
+        <img id="addTolistsImg" class="addTolistsImg" ng-click="addToList(list.cur_userList)" src="./imgs/addToList.png" />
+        <div class="listsValue">
+        <ui-select  ng-model="list.cur_userList" >
+            <ui-select-match allow-clear="true" placeholder="Список...">{{$select.selected.title}}</ui-select-match>
+            <ui-select-choices repeat="userList in list.userLists | filter: $select.search" >
+                <div ng-bind="userList.title"></div>
+            </ui-select-choices>
+        </ui-select>
+        </div>
+      </div>
+    </div>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

@@ -218,7 +218,7 @@ async function getListById(response,postData,header,Uname,UserId) {
 }
 
 async function getLists(response,postData,header,Uname,UserId) {
-  console.log("Request handler 'getLists' was called.");
+  console.log("["+Uname+"] Request handler 'getLists' was called.");
   var lists="empty";
   lists = await SQLite.getLists(UserId);
   //console.log(lists);
@@ -228,19 +228,14 @@ async function getLists(response,postData,header,Uname,UserId) {
 }
 
 async function addToList(response,postData,header,Uname,UserId) {
-  console.log("Request handler 'addToList' was called.");
-  var list="empty";
-  var serialisedData=JSON.parse(postData);
-  var list_id =serialisedData.list_id;
-  try{
-    await SQLite.addToList(list_id,UserId,serialisedData.personss);
-  }
-  catch(errr){
-    console.log(errr.message);
-  }
-  response.writeHead(200, {"Content-Type": "text/plain"});
-  response.write("success");
-  response.end(); 
+    console.log("Request handler 'addToList' was called.");
+    var list="empty";
+    var serialisedData=JSON.parse(postData);
+    var list_id =serialisedData.list_id;
+    await  SQLite.addToList(list_id,UserId,serialisedData.personss);
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.write("success");
+    response.end(); 
 }
 
 
