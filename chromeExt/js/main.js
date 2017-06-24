@@ -31,10 +31,10 @@ var model = {
 
     $scope.list = model;
 
-    
+    var serverHost="http://193.93.237.224:8888/";
 
     $scope.getLists = function() {
-        $http.post("http://127.0.0.1:8888/getLists").success(function (answ) {
+        $http.post(serverHost+"getLists").success(function (answ) {
             $scope.response=answ;
             //console.log(answ);
             result = angular.fromJson(answ); 
@@ -59,7 +59,7 @@ var model = {
                 console.log(tab.url);
                 taburl= tab.url;
                 var postData = {"list_id":selectedList,"lnk":taburl};
-                $http.post("http://127.0.0.1:8888/addToListExt", postData).success(function (answ) {
+                $http.post(serverHost+"addToListExt", postData).success(function (answ) {
                     
                     if(answ=="success"){
                         console.log(answ);    
