@@ -55,23 +55,19 @@ function logout(response,postData,requestHeader) {
     response.end();
 }
 
-function checkAuth(response,postData,requestHeader) {
+async function checkAuth(response,postData,requestHeader) {
   console.log("Request handler 'checkAuth' was called.");
   log.writeToLog("Request handler 'checkAuth' was called.");
   var pData=JSON.parse(postData.toLowerCase());
   var sha1Pass="";
   if(pData[1]!=undefined)
     sha1Pass=sha1(pData[1]);
-  var contents = fs.readFileSync('users.txt', 'utf8');
-  var lines=contents.toLowerCase().split("\r\n");
   var checkA= false;
-  for(i=0;i<lines.length;i++){
-      var parts=lines[i].split(":");
-      uname=parts[0];
-      uhash=parts[2];
-      
+  var users =await SQLite.selectQuerySync("SELECT * FROM users");
+  for(i=0;i<users.length;i++){
+      uname=users[i].u_name.toLowerCase();
+      uhash=users[i].u_hash.toLowerCase();
       if(uname==pData[0]&&uhash==sha1Pass){
-        
         var usession=sha1(uname+uhash+requestHeader['user-agent']);
        // console.log("session:"+usession);
         response.writeHead(200, {"Content-Type": "text/html","Set-Cookie":"ses="+usession});
@@ -89,9 +85,6 @@ function checkAuth(response,postData,requestHeader) {
       response.end();
       return;
   }
-  
-  
-  
 }
 
 // function getUserNameByHash(hash,user_agent){
@@ -237,6 +230,53 @@ async function addToList(response,postData,header,Uname,UserId) {
     response.write("success");
     response.end(); 
 }
+
+
+function getPersonFromUrl(url){
+  
+  var personss=[];
+  return new Promise(function (resolve, reject) {
+    if(url.indexOf("vk.com")!=-1){
+
+          vkInf.GetUserInfo(url).then(function (userInfo) {
+            //console.log(userInfo);
+              var description=[];
+              description.push({"class":"uncolored","prop":"","value":userInfo.profileName});
+              for(i=1;i<userInfo.infos.length;i++){
+                description.push({"class":"uncolored","prop":userInfo.infos[i].InfoTitle+":","value":userInfo.infos[i].InfoData});
+              }
+              //console.log(personss);
+              personss.push({"lnk":userInfo.profileURL,"photo":userInfo.smallAva,"description":description,"socialNetwork":"site/imgs/vk_ico.png"});
+              resolve(personss);
+          }).catch(function(){reject([])});
+
+    }
+  });
+}
+
+async function addToListExt(response,postData,header,Uname,UserId) {
+    console.log("Request handler 'addToListExt' was called.");
+    var list="empty";
+    
+    var serialisedData=JSON.parse(postData);
+    var list_id =serialisedData.list_id;
+    var urlReq =serialisedData.lnk;
+    var personss=[];
+    getPersonFromUrl(urlReq).then(function(pers){
+        personss=pers;
+        console.log(personss);
+        SQLite.addToList(list_id,UserId,personss).then(function(){;
+          response.writeHead(200, {"Content-Type": "text/plain"});
+          if(personss!=undefined&&personss.length!=0)
+            response.write("success");
+          else
+            response.write("error");
+          response.end(); 
+        });
+    }).catch(function(){response.write("error"); response.end(); });
+    
+}
+
 
 
 function getCities(response,postData) {
@@ -413,3 +453,4 @@ exports.getLists = getLists;
 exports.createNewList = createNewList;
 exports.getListById = getListById;
 exports.addToList = addToList;
+exports.addToListExt = addToListExt;

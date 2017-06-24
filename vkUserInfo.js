@@ -20,8 +20,22 @@ const VK    = new VKApi({
 function GetUserInfo(inputData) {
         return new Promise(function (resolve, reject) {
         inputData = inputData.toString();
-        vkId = inputData.substring(inputData.indexOf("id")+2);
+        var ind=inputData.indexOf("id");
+        var vkId="";
+        if(ind!=-1){
+            vkId = inputData.substring(ind+2);
+        }
+        else{
+            ind=inputData.indexOf("vk.com/");
+            if(ind!=-1){
+                vkId=  inputData.substring(ind+7);
+            }
+            else{
+                reject({});
+            }
+        }
         var vkLnkGlobal = inputData;
+       // console.log(vkId);
         //console.log(SearchQuery);
             //For new authorisation
            // ({
@@ -32,7 +46,7 @@ function GetUserInfo(inputData) {
                     user_ids: vkId,
                     name_case:"Nom",
                     version:"5.65",
-                    fields: 'sex, bdate, city, country, home_town,photo_max_orig, domain, has_mobile, contacts, site, education, universities, schools,  followers_count, common_count, occupation, nickname, relation, personal, connections,  activities, interests, music, movies, tv, books, games, about, quotes, screen_name, maiden_name,  career, military'
+                    fields: 'id,sex, bdate, city, country, home_town,photo_max_orig,photo_50, domain, has_mobile, contacts, site, education, universities, schools,  followers_count, common_count, occupation, nickname, relation, personal, connections,  activities, interests, music, movies, tv, books, games, about, quotes, screen_name, maiden_name,  career, military'
                     
             //});
             }).then(userInfos => {
@@ -48,6 +62,12 @@ function GetUserInfo(inputData) {
                 var universities="";
                 var schools="";
                 var career="";
+                var smallAva="";
+                var idUrl="";
+                if(userInfo.id!=undefined){
+                    idUrl="https://vk.com/id"+userInfo.id;
+                    vkLnkGlobal = idUrl;
+                }
                 if(userInfo.first_name!=undefined)
                     fio+=userInfo.first_name;
                 if(userInfo.nickname!=undefined)
@@ -60,6 +80,8 @@ function GetUserInfo(inputData) {
                     living+=" "+userInfo.city.title;
                 if(userInfo.photo_max_orig!=undefined)
                     ava=userInfo.photo_max_orig;
+                if(userInfo.photo_50!=undefined)
+                    smallAva=userInfo.photo_50;
                 if(userInfo.mobile_phone!=undefined)
                     phone=userInfo.mobile_phone;
                 if(userInfo.home_phone!=undefined&&userInfo.home_phone!="")
@@ -94,9 +116,9 @@ function GetUserInfo(inputData) {
                     infos.push({"InfoTitle":"Учеба","InfoData":universities});
                 if(schools!=""&&schools!=undefined)
                     infos.push({"InfoTitle":"Школа","InfoData":schools});
-                var resul={"social":"vk.com","profileName":fio,"image":ava,"infos":infos};
+                var resul={"social":"vk.com","profileName":fio,"image":ava,"infos":infos,"smallAva":smallAva,"profileURL":idUrl};
                 resolve(resul);
-            });
+            }).catch(function(errr){console.log("ERROR on VKAPIGetInfo "+errr.message);reject({});});
         });
     }
 

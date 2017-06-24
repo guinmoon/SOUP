@@ -19,5 +19,6 @@ handle["/exportToWord"] = requestHandlers.exportToWord;
 handle["/createNewList"] = requestHandlers.createNewList;
 handle["/getListById"] = requestHandlers.getListById;
 handle["/addToList"] = requestHandlers.addToList;
+handle["/addToListExt"] = requestHandlers.addToListExt;
 
 server.start(router.route, handle);

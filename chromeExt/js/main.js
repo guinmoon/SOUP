@@ -7,6 +7,8 @@ var model = {
         //{title:"Russia"},
         
     ],
+    addProfileStyle:"",
+    okAddProfileStyle:"",
     userId:"",
     reportGeneratingVisible:"none",
     listsVisible:"block",
@@ -29,54 +31,46 @@ var model = {
 
     $scope.list = model;
 
-    $scope.showListsClicked = function(){
-        model.listsVisible = "block";
-        if(model.listsBottom != "10px")
-            model.listsBottom = "10px";
-        else
-            model.listsBottom = "-40px";
-    }
-
     
 
     $scope.getLists = function() {
         $http.post("http://127.0.0.1:8888/getLists").success(function (answ) {
             $scope.response=answ;
-            console.log(answ);
+            //console.log(answ);
             result = angular.fromJson(answ); 
             for(i=0;i<result.length;i++){
                 model.userLists.push({"id":result[i].id,"title":result[i].list_name});
                 
             }
-            //console.log(result);
+            if(model.userLists.length>0)
+                model.cur_userList = model.userLists[0].id; 
+            
+            //console.log(model.cur_userList);
         });
-        // var xhr = new XMLHttpRequest();
-
-        // xhr.open("GET", "http://127.0.0.1:8888/getLists", false);
-        // xhr.send();
-
-        // var result = xhr.responseText;
     };
 
     $scope.getLists();
 
-    $scope.saveListsClicked = function(){
-        
-        var listName=window.prompt("Ведити название нового списка","Новый Список");
-        //console.log(listName);
-        if(listName==undefined||listName=="")
-            return;
+   $scope.addToList = function(selectedList){
+       //console.log(selectedList);
         var checkedPersons=[];
-        for(i=0;i<model.persons.length;i++){
-            if(model.persons[i].checked=='YES')
-                checkedPersons.push(model.persons[i]);
-        }
-        var postData = {"listName":listName,"personss":checkedPersons};
-        $http.post("createNewList", postData).success(function (answ) {
-            $scope.response=answ;
-            result =answ;
-            //console.log(result);
-        });
+        var taburl= "";
+        chrome.tabs.getSelected(null,function(tab){
+                console.log(tab.url);
+                taburl= tab.url;
+                var postData = {"list_id":selectedList,"lnk":taburl};
+                $http.post("http://127.0.0.1:8888/addToListExt", postData).success(function (answ) {
+                    
+                    if(answ=="success"){
+                        console.log(answ);    
+                        model.addProfileStyle="display: none;";
+                        model.okAddProfileStyle="display: inline-block;";
+                    }
+                });
+            }
+        );
+        
+        
     }
 
    

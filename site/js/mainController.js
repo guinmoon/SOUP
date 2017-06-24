@@ -69,7 +69,7 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-    $('#editable-select').editableSelect();
+    
 /////////////////////////////**************************************  APP    ******************************//////////////////////////////////////////////    
     var purchaseApp = angular.module("purchaseApp", ['ui.select']);
     purchaseApp.config(function(uiSelectConfig) {

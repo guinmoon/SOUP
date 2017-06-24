@@ -13,21 +13,19 @@
 <link rel="stylesheet" href="./css/main.css">
 <link rel="stylesheet" href="./css/select.css">
 <script src="./js/angular.min.js"></script>
-<script src="./js/jquery-1.12.4.min.js"></script>
+<script src="./js/jquery-3.2.1.min.js"></script>
 <script src="./js/select.js"></script>
 
 </head>
   <body ng-controller="purchaseController" ng-cloak>
     <div id="content">
-      <div id="listsinput" class="listsInput" ng-blur="console.log('blur');" >
-        <img id="addTolistsImg" class="addTolistsImg" ng-click="addToList(list.cur_userList)" src="./imgs/addToList.png" />
-        <div class="listsValue">
-        <ui-select  ng-model="list.cur_userList" >
-            <ui-select-match allow-clear="true" placeholder="Список...">{{$select.selected.title}}</ui-select-match>
-            <ui-select-choices repeat="userList in list.userLists | filter: $select.search" >
-                <div ng-bind="userList.title"></div>
-            </ui-select-choices>
-        </ui-select>
+      <div id="listsinput" class="listsInput" >
+        <img id="addTolistsImg" class="addTolistsImg" style="{{list.addProfileStyle}}" ng-click="addToList(list.cur_userList)" src="imgs/addToList.png" />
+        <img id="okAddTolistsImg" class="okAddTolistsImg" style="{{list.okAddProfileStyle}}"  src="imgs/okico.png" />
+        <select id="lists" ng-model="list.cur_userList">
+            <option ng-repeat="list in list.userLists" value="{{list.id}}">{{list.title}}</option>
+        </select>
+
         </div>
       </div>
     </div>
