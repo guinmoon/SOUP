@@ -1,6 +1,6 @@
 var sqlite3 = require('sqlite3').verbose();  
 var sleep = require('system-sleep');
-var file = "soupBase.db";  
+var file = "c:\\soupBase.db";  
 
 function selectQueryAsync(query){
     return new Promise(function (resolve, reject) {
