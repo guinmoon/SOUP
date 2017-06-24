@@ -196,6 +196,9 @@ async function createNewList(response,postData,header,Uname,UserId) {
     var serialisedData=JSON.parse(postData);
    // console.log(serialisedData);
     await SQLite.createNewList(serialisedData,UserId);
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.write("success");
+    response.end(); 
     
 }
 

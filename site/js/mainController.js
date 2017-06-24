@@ -186,6 +186,7 @@ function sleep(ms) {
         $http.post("getLists", "").success(function (answ) {
             $scope.response=answ;
             result = angular.fromJson(answ); 
+            model.userLists=[];
             for(i=0;i<result.length;i++){
                 model.userLists.push({"id":result[i].id,"title":result[i].list_name});
                 
@@ -209,9 +210,10 @@ function sleep(ms) {
         }
         var postData = {"listName":listName,"personss":checkedPersons};
         $http.post("createNewList", postData).success(function (answ) {
-            $scope.response=answ;
+            //$scope.response=answ;
             result =answ;
-            //console.log(result);
+            $scope.getLists();
+            console.log(result);
         });
     }
 
@@ -243,7 +245,7 @@ function sleep(ms) {
                 checkedPersons.push(model.persons[i]);
         }
         postData = checkedPersons;
-        model.reportGeneratingVisible = "block";
+        //model.reportGeneratingVisible = "block";
         $http.post("exportToWord", postData).success(function (answ) {
             $scope.response=answ;
             if(answ=="success"){
@@ -309,7 +311,7 @@ function sleep(ms) {
             $scope.response=answ;
             result = angular.fromJson(answ);
             //console.log(result);    
-            $scope.showList(result)
+            $scope.getLists();
         });
     }
 
