@@ -31,7 +31,8 @@ var model = {
 
     $scope.list = model;
 
-    var serverHost="http://193.93.237.224:8888/";
+    //var serverHost="http://193.93.237.224:8888/";
+    var serverHost="http://127.0.0.1:8888/";
 
     $scope.getLists = function() {
         $http.post(serverHost+"getLists").success(function (answ) {

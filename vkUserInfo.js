@@ -64,6 +64,7 @@ function GetUserInfo(inputData) {
                 var career="";
                 var smallAva="";
                 var idUrl="";
+                var bday="";
                 if(userInfo.id!=undefined){
                     idUrl="https://vk.com/id"+userInfo.id;
                     vkLnkGlobal = idUrl;
@@ -84,6 +85,8 @@ function GetUserInfo(inputData) {
                     smallAva=userInfo.photo_50;
                 if(userInfo.mobile_phone!=undefined)
                     phone=userInfo.mobile_phone;
+                if(userInfo.bdate!=undefined)
+                    bday=userInfo.bdate;
                 if(userInfo.home_phone!=undefined&&userInfo.home_phone!="")
                     phone+=" "+userInfo.home_phone;
                 if(userInfo.universities!=undefined){
@@ -108,6 +111,8 @@ function GetUserInfo(inputData) {
                 infos.push({"InfoTitle":"Ссылка на профиль","InfoData":vkLnkGlobal});
                 if(living!=""&&living!=undefined)
                     infos.push({"InfoTitle":"Текущий город","InfoData":living});
+                if(bday!=""&&bday!=undefined)
+                    infos.push({"InfoTitle":"Дата рождения","InfoData":bday});
                 if(phone!=""&&phone!=undefined)
                     infos.push({"InfoTitle":"Телефоны","InfoData":phone});
                 if(career!=""&&career!=undefined)
