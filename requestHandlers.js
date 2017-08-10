@@ -422,6 +422,8 @@ function loadFile(response,pathName,header,UserNameGlobal) {
       });
     }
     else if(pathName.indexOf(".docx")!=-1){
+        if(pathName.toLowerCase()=="/output.docx")
+          pathName="c:\\reports\output.docx"
         response.writeHead(200, {"Content-Type": "application/zip"});
         var s = fs.createReadStream(pathName);
         s.on('open', function () {

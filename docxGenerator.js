@@ -112,7 +112,7 @@ function generateDocxFile(fileTextData)
                         .generate({type: 'nodebuffer'});
 
             
-            fs.writeFileSync(path.resolve(__dirname, 'output.docx'), buf);
+            fs.writeFileSync(path.resolve(__dirname, 'C:\\reports\\output.docx'), buf);
             resolve("generated");
         });
     });
