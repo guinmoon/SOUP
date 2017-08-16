@@ -14,7 +14,7 @@ var fs = require('fs');
 // var searchQuery = "https://yandex.ru/people?text="+search_name+"&lr=36&ps_network=7";
 
 
-function SearchPeoples(pers,network) {
+function SearchPeoples(pers,network,countryFromPost,cityFromPost) {
     return new Promise(function (resolve, reject) {
         ageFrom="";
         ageTo="";
@@ -22,6 +22,10 @@ function SearchPeoples(pers,network) {
        // lastname="";
        // middlename="";
         inputPhone="";
+        City= "";
+        if(cityFromPost.title!=undefined&&cityFromPost.title!=""&&cityFromPost.title!={})
+            City=cityFromPost.title;
+        
         for(i=0;i<pers.length;i++)
         {
             if(pers[i].type=="bday")
@@ -59,12 +63,15 @@ function SearchPeoples(pers,network) {
                 }
             }
         }
+        
         var search_name = /*firstname+" "+lastname*/fio;
         search_name=encodeURIComponent(search_name);
         var citySerchStr="";
-        if(City!=""&&City!=undefined)
+        
+        if(City!=undefined&&City!=""&&City!={})
             citySerchStr = "&ps_geo="+encodeURIComponent(City);
         var searchQuery = "https://yandex.ru/people?text="+search_name+"&lr=36&ps_network="+network+citySerchStr;
+        //console.log(searchQuery);
         request({
             //uri: "http://vk.com",
             uri: searchQuery,
@@ -73,22 +80,25 @@ function SearchPeoples(pers,network) {
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
             "Accept-Encoding": 'utf-8',"Cookie":"AUTHCODE=KYn4ksJlGxXIslo9BTiSywM463em1Xwntf9nWN023Vbn-ISAYwOMLpVyEcgleVhx1isl2H7w5k0k8J3dcPcMm2CnTfJNobG3VSbJ_0WHT38_2; JSESSIONID=aaeef9577cacbde4ebbca98f802743e995f44a513e5390cf;"}
         }, function(error, response, body) {
-                /*fs.writeFile("ypSearch.html", body, function(err) {
+               /* fs.writeFile("ypSearch.html", body, function(err) {
                         if(err) {
                             return console.log(err);
                         }
                 }); */
                 var $page = cheerio.load(body);
+
                 var Peoples = [];
                 //console.log("Before_iter");
                 $page("div.main__content li[class='serp-item people people_has-avatar_yes clearfix z-people']").each(function(i, elm) {
                     try{
                         var $hover = cheerio.load($page(this).html());
                         var img_src=$hover("div[class='people__avatar']").attr('style');
+                        
                         img_src = img_src.replace("background-image:url(","http:");
                         img_src = img_src.replace(")","");
-                        var href=$hover("a[class='link people__avatar-link i-bem']").attr('href');
-                        var name=$hover("a[class='link serp-item__title-link i-bem']").text();
+                        var href=$hover("a[class='link link_theme_normal serp-item__title-link i-bem']").attr('href');
+                        console.log(href);
+                        var name=$hover("a[class='link link_theme_normal serp-item__title-link i-bem']").text();
                         //console.log(name);
                         var ProfileDescription=[];
                             ProfileDescription.push(name);
