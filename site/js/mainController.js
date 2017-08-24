@@ -116,6 +116,11 @@ function sleep(ms) {
         }
     });
 
+    $scope.selectAll = function(){
+        for(i=0;i<$scope.list.persons.length;i++){
+            $scope.list.persons[i].checked='YES';
+        }
+    }
     
     $scope.addItem = function (itemId,itemName,itemEvent) {
        // console.log(itemName);

@@ -25,10 +25,10 @@
         <select id="lists" ng-model="list.cur_userList">
             <option ng-repeat="list in list.userLists" value="{{list.id}}">{{list.title}}</option>
         </select>
-
         </div>
+        <button class="btn btn-success" ng-click="addList(list.url_list)" ng-disabled="false">Добавить список</button>
+        <textarea id="myTextarea" class="urlList" rows="11" cols="32" ng-model="list.url_list" ng-list="&#10;" ng-trim="false"></textarea>
       </div>
-    </div>
     <script src="./js/main.js"></script>
   </body>
 </html>
